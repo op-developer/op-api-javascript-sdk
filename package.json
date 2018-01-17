@@ -1,0 +1,15 @@
+{
+    "name": "op-developer-sdk",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.ts",
+    "scripts": {},
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@types/request": "^2.0.9",
+        "@types/sprintf-js": "^1.1.0",
+        "request": "^2.83.0",
+        "sprintf-js": "^1.1.1"
+    }
+}
