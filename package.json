@@ -2,8 +2,10 @@
     "name": "op-developer-sdk",
     "version": "1.0.0",
     "description": "",
-    "main": "index.ts",
-    "scripts": {},
+    "main": "./index.ts",
+    "scripts": {
+        "build": "tsc -p ."
+    },
     "author": "",
     "license": "ISC",
     "dependencies": {
@@ -11,5 +13,8 @@
         "@types/sprintf-js": "^1.1.0",
         "request": "^2.83.0",
         "sprintf-js": "^1.1.1"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.2"
     }
 }
