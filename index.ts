@@ -6,7 +6,7 @@ import { Accounts } from './src/apis/Accounts';
 import { Payments } from './src/apis/payments';
 import * as dataSchemas from './src/utils/DataSchemas';
 
-const config = require('./config.json');
+const config = require('../config.json');
 
 export class Client {
     options: dataSchemas.Options;
