@@ -4,17 +4,38 @@
     "description": "SDK for OP-developer API",
     "main": "./build/index.js",
     "scripts": {
-        "build": "tsc -p ."
+        "build": "tsc -p .",
+        "test": "jest"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "@types/request": "^2.0.9",
         "@types/sprintf-js": "^1.1.0",
+        "object-assign-deep": "^0.3.1",
         "request": "^2.83.0",
         "sprintf-js": "^1.1.1"
     },
     "devDependencies": {
+        "@types/chai": "^4.1.1",
+        "@types/mocha": "^2.2.46",
+        "chai": "^4.1.2",
+        "cross-env": "^5.1.3",
+        "jest": "^22.1.2",
+        "mocha": "^5.0.0",
         "typescript": "^2.6.2"
+    },
+    "jest": {
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ],
+        "transform": {
+            "^.+\\.(ts|tsx)$": "./preprocessor.js"
+        },
+        "testMatch": [
+            "**/tests/*.(ts|tsx|js)"
+        ]
     }
 }
