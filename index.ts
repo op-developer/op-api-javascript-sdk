@@ -1,4 +1,5 @@
 import { sprintf } from 'sprintf-js';
+const objectAssignDeep = require(`object-assign-deep`);
 
 import { Funds } from './src/apis/Funds';
 import { Holdings } from './src/apis/Holdings';
@@ -11,7 +12,7 @@ const config = require('../config.json');
 export class Client {
     options: dataSchemas.Options;
 
-    constructor(options?: dataSchemas.Options) {
+    constructor(options?: object) {
         const defaultOptions = {
             headers: {
                 'x-request-id': '',
@@ -24,7 +25,8 @@ export class Client {
             uri: '',
             json: true
         };
-        this.options = Object.assign({}, defaultOptions, options);
+        this.options = objectAssignDeep({}, defaultOptions, options);
+        //this.options = Object.assign({}, defaultOptions, options);
     }
 
     getAllAccounts(
