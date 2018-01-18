@@ -1,8 +1,8 @@
 {
     "name": "op-developer-sdk",
     "version": "1.0.0",
-    "description": "",
-    "main": "./index.ts",
+    "description": "SDK for OP-developer API",
+    "main": "./build/index.js",
     "scripts": {
         "build": "tsc -p ."
     },
