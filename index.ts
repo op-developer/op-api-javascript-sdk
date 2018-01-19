@@ -26,64 +26,64 @@ export class Client {
     }
 
     getAllAccounts(options?: dataSchemas.Options) {
-        objectAssignDeep(this.options, options);
-        return new Accounts(this.options).getAllAccounts();
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Accounts(requestOptions).getAllAccounts();
     }
     getAccountById(accountId: String, options?: dataSchemas.Options) {
-        objectAssignDeep(this.options, options);
-        return new Accounts(this.options).getAccountById(accountId);
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Accounts(requestOptions).getAccountById(accountId);
     }
     getAccountsTransactions(accountId: String, options?: dataSchemas.Options) {
-        objectAssignDeep(this.options, options);
-        return new Accounts(this.options).getAccountsTransactions(accountId);
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Accounts(requestOptions).getAccountsTransactions(accountId);
     }
     getAccountsTransactionsById(
         accountId: String,
         transactionId: String,
         options?: dataSchemas.Options
     ) {
-        objectAssignDeep(this.options, options);
-        return new Accounts(this.options).getAccountTransactionsById(
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Accounts(requestOptions).getAccountTransactionsById(
             accountId,
             transactionId
         );
     }
     getFunds(options?: dataSchemas.Options) {
-        objectAssignDeep(this.options, options);
-        return new Funds(this.options).getFunds();
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Funds(requestOptions).getFunds();
     }
     getHoldings(options?: dataSchemas.Options) {
-        objectAssignDeep(this.options, options);
-        return new Holdings(this.options).getHoldings();
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Holdings(requestOptions).getHoldings();
     }
     postSubscriptions(
         body: dataSchemas.FundOrderRequest,
         fundId: String,
         options?: dataSchemas.Options
     ) {
-        objectAssignDeep(this.options, options);
-        return new Funds(this.options).postSubscription(body, fundId);
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Funds(requestOptions).postSubscription(body, fundId);
     }
     postRedemptions(
         body: dataSchemas.FundOrderRequest,
         fundId: String,
         options?: dataSchemas.Options
     ) {
-        objectAssignDeep(this.options, options);
-        return new Funds(this.options).postRedemption(body, fundId);
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Funds(requestOptions).postRedemption(body, fundId);
     }
     postPaymentInitiate(
         data: dataSchemas.PaymentData,
         options?: dataSchemas.Options
     ) {
-        objectAssignDeep(this.options, options);
-        return new Payments(this.options).paymentInitiate(data);
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Payments(requestOptions).paymentInitiate(data);
     }
     postPaymentConfirm(
         data: dataSchemas.PaymentConfirmData,
         options?: dataSchemas.Options
     ) {
-        objectAssignDeep(this.options, options);
-        return new Payments(this.options).paymentConfirm(data);
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Payments(requestOptions).paymentConfirm(data);
     }
 }
