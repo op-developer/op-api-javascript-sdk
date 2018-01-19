@@ -11,13 +11,14 @@ const headers = {
 };
 const client = new Client({ headers });
 
-var transactionId: String;
-
 describe('Accounts', () => {
     it('Should return more than 1 account.', done => {
         client.getAllAccounts().then(accounts => {
-            let accountLength = JSON.parse(JSON.stringify(accounts)).length;
-            chai.expect(accountLength).to.be.above(1);
+            chai.expect(accounts).length.to.be.above(1);
+            chai
+                .expect(accounts)
+                .to.have.nested.property('[0]')
+                .with.property('accountId');
             done();
         });
     });
@@ -25,11 +26,11 @@ describe('Accounts', () => {
         client
             .getAccountById('4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f')
             .then(account => {
-                let accountbyId = JSON.parse(JSON.stringify(account));
-                chai.expect(accountbyId).to.exist;
-                chai.expect(accountbyId.length).to.equal(1);
+                chai.expect(account).to.exist;
                 chai
-                    .expect(accountbyId[0]['accountId'])
+                    .expect(account)
+                    .to.have.nested.property('[0]')
+                    .with.property('accountId')
                     .to.equal('4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f');
                 done();
             });
@@ -38,12 +39,11 @@ describe('Accounts', () => {
         client
             .getAccountsTransactions('5189f37b439bd02462e196e206d0318f094fca82')
             .then(transactions => {
-                let transactionsFromAccount = JSON.parse(
-                    JSON.stringify(transactions)
-                );
-                chai.expect(transactionsFromAccount.length).to.be.above(0);
-                chai.expect(transactionsFromAccount[0]['transactionId']).to
-                    .exist;
+                chai.expect(transactions).length.to.be.above(0);
+                chai
+                    .expect(transactions)
+                    .to.have.nested.property('[0]')
+                    .with.property('transactionId');
                 done();
             });
     });
@@ -54,11 +54,7 @@ describe('Accounts', () => {
                 '77302960-fb2b-11e7-a10a-b5588c376575'
             )
             .then(transaction => {
-                let transactionById = JSON.parse(JSON.stringify(transaction));
-                chai.expect(transactionById['transaction'][0]).to.exist;
-                chai
-                    .expect(transactionById['transaction'][0]['payer'])
-                    .to.equal('Teppo Tulppu');
+                chai.expect(transaction).to.have.property('transaction');
                 done();
             });
     });
