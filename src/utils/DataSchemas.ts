@@ -82,9 +82,9 @@ export interface Options {
 }
 
 export interface Headers {
-    'x-request-id': String;
-    'x-session-id': String;
-    'x-authorization': String;
+    'x-request-id'?: String;
+    'x-session-id'?: String;
+    'x-authorization'?: String;
     'x-api-key': String;
 }
 
