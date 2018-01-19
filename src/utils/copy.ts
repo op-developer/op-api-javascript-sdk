@@ -1,4 +1,3 @@
-import * as validator from './validator';
 import { Options } from './DataSchemas';
 
 function copyObject(input: object) {
