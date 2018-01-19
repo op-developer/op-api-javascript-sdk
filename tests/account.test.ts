@@ -7,7 +7,7 @@ const headers = {
     'x-request-id': 'x-request-id',
     'x-session-id': 'x-session-id',
     'x-authorization': 'b6910384440ce06f495976f96a162e2ab1bafbb4',
-    'x-api-key': 'm9itG31Vm68B8fHhtKjszRCdt8WzC04j'
+    'x-api-key': process.env.X_API_KEY
 };
 const client = new Client({ headers });
 
