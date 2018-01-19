@@ -5,15 +5,17 @@
     "main": "./build/index.js",
     "scripts": {
         "build": "tsc -p .",
-        "test": "jest"
+        "test": "tsc -p . && jest"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
         "@types/request": "^2.0.9",
+        "@types/request-promise": "^4.1.39",
         "@types/sprintf-js": "^1.1.0",
         "object-assign-deep": "^0.3.1",
         "request": "^2.83.0",
+        "request-promise": "^4.2.2",
         "sprintf-js": "^1.1.1"
     },
     "devDependencies": {
@@ -25,16 +27,10 @@
         "typescript": "^2.6.2"
     },
     "jest": {
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ],
+        "moduleFileExtensions": ["ts", "tsx", "js"],
         "transform": {
             "^.+\\.(ts|tsx)$": "./preprocessor.js"
         },
-        "testMatch": [
-            "**/tests/*.(ts|tsx|js)"
-        ]
+        "testMatch": ["**/tests/*.(ts|tsx|js)"]
     }
 }
