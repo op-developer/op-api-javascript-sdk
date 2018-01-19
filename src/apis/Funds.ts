@@ -1,5 +1,7 @@
-import * as request from 'request';
+import * as rp from 'request-promise';
+
 import * as validator from '../utils/validator';
+import * as copy from '../utils/copy';
 import { sprintf } from 'sprintf-js';
 import {
     Fund,
@@ -12,54 +14,30 @@ export class Funds {
     constructor(options: any) {
         this.options = options;
     }
-    getFunds() {
-        return new Promise((resolve, reject) => {
-            const path = '/funds';
-            this.options['uri'] = path;
-            if (validator.exists(this.options['body'])) {
-                this.options['body'] = undefined;
-            }
-            request.get(
-                this.options,
-                (err: object, res: object, body: Array<Fund>) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async getFunds() {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'GET',
+            '/funds'
+        );
+        return rp(requestOptions);
     }
-    postSubscription(data: FundOrderRequest, fundId: String) {
-        return new Promise((resolve, reject) => {
-            const path = sprintf('/funds/%s/subscriptions', fundId);
-            this.options['uri'] = path;
-            this.options['body'] = data;
-            request.post(
-                this.options,
-                (err: object, res: object, body: FundOrderResponse) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async postSubscription(data: FundOrderRequest, fundId: String) {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'POST',
+            sprintf('/funds/%s/subscriptions', fundId),
+            data
+        );
+        return rp(requestOptions);
     }
-    postRedemption(data: FundOrderRequest, fundId: String) {
-        return new Promise((resolve, reject) => {
-            const path = sprintf('/funds/%s/redemptions', fundId);
-            this.options['uri'] = path;
-            this.options['body'] = data;
-            request.post(
-                this.options,
-                (err: object, res: object, body: FundOrderResponse) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async postRedemption(data: FundOrderRequest, fundId: String) {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'POST',
+            sprintf('/funds/%s/redemptions', fundId),
+            data
+        );
+        return rp(requestOptions);
     }
 }

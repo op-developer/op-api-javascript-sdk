@@ -1,5 +1,7 @@
-import * as request from 'request';
+import * as rp from 'request-promise';
+
 import * as validator from '../utils/validator';
+import * as copy from '../utils/copy';
 import { sprintf } from 'sprintf-js';
 import { AccountType, Transaction } from '../utils/dataSchemas';
 
@@ -8,80 +10,36 @@ export class Accounts {
     constructor(options: any) {
         this.options = options;
     }
-    getAllAccounts() {
-        return new Promise((resolve, reject) => {
-            const path = '/accounts';
-            this.options['uri'] = path;
-            if (validator.exists(this.options['body'])) {
-                this.options['body'] = undefined;
-            }
-            request.get(
-                this.options,
-                (err: object, res: object, body: Array<AccountType>) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async getAllAccounts() {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'GET',
+            '/accounts'
+        );
+        return rp(requestOptions);
     }
-    getAccountById(accountId: String) {
-        return new Promise((resolve, reject) => {
-            const path = sprintf('/accounts/%s', accountId);
-            this.options['uri'] = path;
-            if (validator.exists(this.options['body'])) {
-                this.options['body'] = undefined;
-            }
-            request.get(
-                this.options,
-                (err: object, res: object, body: AccountType) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async getAccountById(accountId: String) {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'GET',
+            sprintf('/accounts/%s', accountId)
+        );
+        return rp.get(requestOptions);
     }
-    getAccountsTransactions(accountId: String) {
-        return new Promise((resolve, reject) => {
-            const path = sprintf('/accounts/%s/transactions', accountId);
-            this.options['uri'] = path;
-            if (validator.exists(this.options['body'])) {
-                this.options['body'] = undefined;
-            }
-            request.get(
-                this.options,
-                (err: any, res: object, body: Array<Transaction>) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async getAccountsTransactions(accountId: String) {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'GET',
+            sprintf('/accounts/%s/transactions', accountId)
+        );
+        return rp.get(requestOptions);
     }
-    getAccountTransactionsById(accountId: String, transactionId: String) {
-        return new Promise((resolve, reject) => {
-            const path = sprintf(
-                '/accounts/%s/transactions/%s',
-                accountId,
-                transactionId
-            );
-            this.options['uri'] = path;
-            if (validator.exists(this.options['body'])) {
-                this.options['body'] = undefined;
-            }
-            request.get(
-                this.options,
-                (err: object, res: object, body: Transaction) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async getAccountTransactionsById(accountId: String, transactionId: String) {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'GET',
+            sprintf('/accounts/%s/transactions/%s', accountId, transactionId)
+        );
+        return rp.get(requestOptions);
     }
 }

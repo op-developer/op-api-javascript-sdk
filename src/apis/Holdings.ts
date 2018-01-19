@@ -1,4 +1,6 @@
-import * as request from 'request';
+import * as rp from 'request-promise';
+
+import * as copy from '../utils/copy';
 import * as validator from '../utils/validator';
 import { Holding } from '../utils/dataSchemas';
 
@@ -7,22 +9,12 @@ export class Holdings {
     constructor(options: any) {
         this.options = options;
     }
-    getHoldings() {
-        return new Promise((resolve, reject) => {
-            const path = '/holdings';
-            this.options['uri'] = path;
-            if (validator.exists(this.options['body'])) {
-                this.options['body'] = undefined;
-            }
-            request.get(
-                this.options,
-                (err: object, res: object, body: Holding) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async getHoldings() {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'GET',
+            '/holdings'
+        );
+        return rp(requestOptions);
     }
 }

@@ -1,4 +1,6 @@
-import * as request from 'request';
+import * as rp from 'request-promise';
+
+import * as copy from '../utils/copy';
 import * as validator from '../utils/validator';
 import { sprintf } from 'sprintf-js';
 import { PaymentData, PaymentConfirmData } from '../utils/dataSchemas';
@@ -8,36 +10,22 @@ export class Payments {
     constructor(options: any) {
         this.options = options;
     }
-    paymentInitiate(data: PaymentData) {
-        return new Promise((resolve, reject) => {
-            const path = '/payments/initiate';
-            this.options['uri'] = path;
-            this.options['body'] = data;
-            request.post(
-                this.options,
-                (err: object, res: object, body: PaymentData) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async paymentInitiate(data: PaymentData) {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'POST',
+            '/payments/initiate',
+            data
+        );
+        return rp(requestOptions);
     }
-    paymentConfirm(data: PaymentConfirmData) {
-        return new Promise((resolve, reject) => {
-            const path = '/payments/confirm';
-            this.options['uri'] = path;
-            this.options['body'] = data;
-            request.post(
-                this.options,
-                (err: object, res: object, body: PaymentData) => {
-                    if (!validator.isEmpty(err)) {
-                        reject(err);
-                    }
-                    resolve(body);
-                }
-            );
-        });
+    async paymentConfirm(data: PaymentConfirmData) {
+        let requestOptions = await copy.modifyOptions(
+            this.options,
+            'POST',
+            '/payments/confirm',
+            data
+        );
+        return rp(requestOptions);
     }
 }
