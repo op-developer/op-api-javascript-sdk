@@ -19,7 +19,7 @@ You need to use headers on every request. See [requests](https://op-developer.fi
         }
     }
 
-You can set headers to client instance.
+You can set request options to client instance.
 
     const client = SDK.Client(options)
 
@@ -29,7 +29,7 @@ You can set headers to client instance.
             //Error handling..
         })
 
-You can also set options to each function individually
+You can also set request options to each function individually
 
     const client = SDK.Client()
 
