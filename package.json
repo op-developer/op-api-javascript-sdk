@@ -4,8 +4,8 @@
     "description": "SDK for OP-developer API",
     "main": "./build/index.js",
     "scripts": {
-        "build": "tsc -p .",
-        "test": "tsc -p . && jest"
+        "install": "tsc -p .",
+        "test": "jest"
     },
     "author": "",
     "license": "ISC",
