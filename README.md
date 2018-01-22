@@ -21,7 +21,7 @@ You need to use headers on every request. See [requests](https://op-developer.fi
 
 You can set request options to client instance.
 
-    const client = SDK.Client(options)
+    const client = new SDK.Client(options)
 
     client.getAllAccounts().then(accounts => {
             //Do stuff with accounts...
