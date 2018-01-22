@@ -37,7 +37,7 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Accounts(requestOptions).getAccountsTransactions(accountId);
     }
-    getAccountsTransactionsById(
+    getAccountsTransactionById(
         accountId: String,
         transactionId: String,
         options?: dataSchemas.Options
@@ -56,34 +56,34 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Holdings(requestOptions).getHoldings();
     }
-    postSubscriptions(
+    postSubscription(
         body: dataSchemas.FundOrderRequest,
-        fundId: String,
+        isinCode: String,
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Funds(requestOptions).postSubscription(body, fundId);
+        return new Funds(requestOptions).postSubscription(body, isinCode);
     }
-    postRedemptions(
+    postRedemption(
         body: dataSchemas.FundOrderRequest,
-        fundId: String,
+        isinCode: String,
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Funds(requestOptions).postRedemption(body, fundId);
+        return new Funds(requestOptions).postRedemption(body, isinCode);
     }
     postPaymentInitiate(
-        data: dataSchemas.PaymentData,
+        body: dataSchemas.PaymentData,
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Payments(requestOptions).paymentInitiate(data);
+        return new Payments(requestOptions).paymentInitiate(body);
     }
     postPaymentConfirm(
-        data: dataSchemas.PaymentConfirmData,
+        body: dataSchemas.PaymentConfirmData,
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Payments(requestOptions).paymentConfirm(data);
+        return new Payments(requestOptions).paymentConfirm(body);
     }
 }
