@@ -10,21 +10,21 @@ export class Payments {
     constructor(options: any) {
         this.options = options;
     }
-    async paymentInitiate(data: PaymentData) {
+    async paymentInitiate(body: PaymentData) {
         let requestOptions = await copy.modifyOptions(
             this.options,
             'POST',
             '/payments/initiate',
-            data
+            body
         );
         return rp(requestOptions);
     }
-    async paymentConfirm(data: PaymentConfirmData) {
+    async paymentConfirm(body: PaymentConfirmData) {
         let requestOptions = await copy.modifyOptions(
             this.options,
             'POST',
             '/payments/confirm',
-            data
+            body
         );
         return rp(requestOptions);
     }

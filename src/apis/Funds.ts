@@ -22,20 +22,20 @@ export class Funds {
         );
         return rp(requestOptions);
     }
-    async postSubscription(data: FundOrderRequest, fundId: String) {
+    async postSubscription(data: FundOrderRequest, isinCode: String) {
         let requestOptions = await copy.modifyOptions(
             this.options,
             'POST',
-            sprintf('/funds/%s/subscriptions', fundId),
+            sprintf('/funds/%s/subscriptions', isinCode),
             data
         );
         return rp(requestOptions);
     }
-    async postRedemption(data: FundOrderRequest, fundId: String) {
+    async postRedemption(data: FundOrderRequest, isinCode: String) {
         let requestOptions = await copy.modifyOptions(
             this.options,
             'POST',
-            sprintf('/funds/%s/redemptions', fundId),
+            sprintf('/funds/%s/redemptions', isinCode),
             data
         );
         return rp(requestOptions);
