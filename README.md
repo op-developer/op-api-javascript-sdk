@@ -31,7 +31,7 @@ You can set request options to client instance.
 
 You can also set request options to each function individually
 
-    const client = SDK.Client()
+    const client = new SDK.Client()
 
     client.getAllAccounts(options).then(accounts => {
             //Do stuff with accounts...
