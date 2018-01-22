@@ -5,6 +5,7 @@
     "main": "./build/index.js",
     "scripts": {
         "install": "tsc -p .",
+        "build": "tsc -p .",
         "test": "jest"
     },
     "author": "",
