@@ -1,4 +1,4 @@
-# OP-developer SDK
+# op-api-javascript-sdk
 
 ## Installation
 
