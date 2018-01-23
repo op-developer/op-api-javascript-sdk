@@ -39,7 +39,7 @@ describe('Funds', () => {
     });
     it('Should post a subscription to fund', done => {
         client
-            .postSubscriptions(subscription, 'FI0008800248')
+            .postSubscription(subscription, 'FI0008800248')
             .then(subscriptionInfo => {
                 chai
                     .expect(subscriptionInfo)
@@ -50,7 +50,7 @@ describe('Funds', () => {
     });
     it('Should post a redemption to fund', done => {
         client
-            .postRedemptions(subscription, 'FI0008800248')
+            .postRedemption(subscription, 'FI0008800248')
             .then(redemptionInfo => {
                 chai
                     .expect(redemptionInfo)

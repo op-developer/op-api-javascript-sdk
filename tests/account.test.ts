@@ -49,7 +49,7 @@ describe('Accounts', () => {
     });
     it('Should return transaction with id "77302960-fb2b-11e7-a10a-b5588c376575"', done => {
         client
-            .getAccountsTransactionsById(
+            .getAccountsTransactionById(
                 '5189f37b439bd02462e196e206d0318f094fca82',
                 '77302960-fb2b-11e7-a10a-b5588c376575'
             )
