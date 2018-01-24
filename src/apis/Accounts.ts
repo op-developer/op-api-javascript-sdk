@@ -1,4 +1,4 @@
-import * as rp from 'request-promise';
+import axios from 'axios';
 
 import * as validator from '../utils/validator';
 import * as copy from '../utils/copy';
@@ -16,7 +16,7 @@ export class Accounts {
             'GET',
             '/accounts'
         );
-        return rp(requestOptions);
+        return axios(requestOptions);
     }
     async getAccountById(accountId: String) {
         let requestOptions = await copy.modifyOptions(
@@ -24,7 +24,7 @@ export class Accounts {
             'GET',
             sprintf('/accounts/%s', accountId)
         );
-        return rp.get(requestOptions);
+        return axios(requestOptions);
     }
     async getAccountsTransactions(accountId: String) {
         let requestOptions = await copy.modifyOptions(
@@ -32,7 +32,7 @@ export class Accounts {
             'GET',
             sprintf('/accounts/%s/transactions', accountId)
         );
-        return rp.get(requestOptions);
+        return axios(requestOptions);
     }
     async getAccountTransactionsById(accountId: String, transactionId: String) {
         let requestOptions = await copy.modifyOptions(
@@ -40,6 +40,6 @@ export class Accounts {
             'GET',
             sprintf('/accounts/%s/transactions/%s', accountId, transactionId)
         );
-        return rp.get(requestOptions);
+        return axios(requestOptions);
     }
 }
