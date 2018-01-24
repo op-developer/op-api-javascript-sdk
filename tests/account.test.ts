@@ -14,9 +14,9 @@ const client = new Client({ headers });
 describe('Accounts', () => {
     it('Should return more than 1 account.', done => {
         client.getAllAccounts().then(accounts => {
-            chai.expect(accounts).length.to.be.above(1);
+            chai.expect(accounts.data).length.to.be.above(1);
             chai
-                .expect(accounts)
+                .expect(accounts.data)
                 .to.have.nested.property('[0]')
                 .with.property('accountId');
             done();
@@ -26,9 +26,9 @@ describe('Accounts', () => {
         client
             .getAccountById('4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f')
             .then(account => {
-                chai.expect(account).to.exist;
+                chai.expect(account.data).to.exist;
                 chai
-                    .expect(account)
+                    .expect(account.data)
                     .to.have.nested.property('[0]')
                     .with.property('accountId')
                     .to.equal('4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f');
@@ -39,9 +39,9 @@ describe('Accounts', () => {
         client
             .getAccountsTransactions('5189f37b439bd02462e196e206d0318f094fca82')
             .then(transactions => {
-                chai.expect(transactions).length.to.be.above(0);
+                chai.expect(transactions.data).length.to.be.above(0);
                 chai
-                    .expect(transactions)
+                    .expect(transactions.data)
                     .to.have.nested.property('[0]')
                     .with.property('transactionId');
                 done();
@@ -54,7 +54,7 @@ describe('Accounts', () => {
                 '77302960-fb2b-11e7-a10a-b5588c376575'
             )
             .then(transaction => {
-                chai.expect(transaction).to.have.property('transaction');
+                chai.expect(transaction.data).to.have.property('transaction');
                 done();
             });
     });

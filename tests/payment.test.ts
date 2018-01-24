@@ -27,20 +27,28 @@ describe('Payments', () => {
         client
             .postPaymentInitiate(paymentData)
             .then(paymentInfo => {
-                chai.expect(paymentInfo).to.have.property('paymentId');
-                chai.expect(paymentInfo).to.have.property('amount');
-                chai.expect(paymentInfo).to.have.property('payerIban');
-                chai.expect(paymentInfo).to.have.property('receiverIban');
-                return paymentInfo.paymentId;
+                chai.expect(paymentInfo.data).to.have.property('paymentId');
+                chai.expect(paymentInfo.data).to.have.property('amount');
+                chai.expect(paymentInfo.data).to.have.property('payerIban');
+                chai.expect(paymentInfo.data).to.have.property('receiverIban');
+                return paymentInfo.data.paymentId;
             })
             .then(paymentId => {
                 client
                     .postPaymentConfirm({ paymentId: paymentId })
-                    .then(data => {
-                        chai.expect(data).to.have.property('paymentId');
-                        chai.expect(data).to.have.property('amount');
-                        chai.expect(data).to.have.property('payerIban');
-                        chai.expect(data).to.have.property('receiverIban');
+                    .then(confirmInfo => {
+                        chai
+                            .expect(confirmInfo.data)
+                            .to.have.property('paymentId');
+                        chai
+                            .expect(confirmInfo.data)
+                            .to.have.property('amount');
+                        chai
+                            .expect(confirmInfo.data)
+                            .to.have.property('payerIban');
+                        chai
+                            .expect(confirmInfo.data)
+                            .to.have.property('receiverIban');
                         done();
                     });
             });
