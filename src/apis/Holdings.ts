@@ -1,4 +1,4 @@
-import * as rp from 'request-promise';
+import axios from 'axios';
 
 import * as copy from '../utils/copy';
 import * as validator from '../utils/validator';
@@ -15,6 +15,6 @@ export class Holdings {
             'GET',
             '/holdings'
         );
-        return rp(requestOptions);
+        return axios(requestOptions);
     }
 }

@@ -24,9 +24,9 @@ You can set request options to client instance.
     const client = new SDK.Client(options)
 
     client.getAllAccounts().then(accounts => {
-            //Do stuff with accounts...
+            console.log(accounts.data);
         }).catch(error => {
-            //Error handling..
+            console.log(error);
         })
 
 You can also set request options to each function individually
@@ -34,9 +34,9 @@ You can also set request options to each function individually
     const client = new SDK.Client()
 
     client.getAllAccounts(options).then(accounts => {
-            //Do stuff with accounts...
+            console.log(accounts.data)
         }).catch(error => {
-            //Error handling..
+            console.log(error);
         }
 
 For further reading, please see our API [documentation](https://op-developer.fi/docs/)

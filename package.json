@@ -11,11 +11,10 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@types/request-promise": "^4.1.39",
+        "@types/axios": "^0.14.0",
         "@types/sprintf-js": "^1.1.0",
+        "axios": "^0.17.1",
         "object-assign-deep": "^0.3.1",
-        "request": "^2.83.0",
-        "request-promise": "^4.2.2",
         "sprintf-js": "^1.1.1"
     },
     "devDependencies": {
@@ -27,16 +26,11 @@
         "typescript": "^2.6.2"
     },
     "jest": {
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ],
+        "moduleFileExtensions": ["ts", "tsx", "js"],
+        "testEnvironment": "node",
         "transform": {
             "^.+\\.(ts|tsx)$": "./preprocessor.js"
         },
-        "testMatch": [
-            "**/tests/*.(ts|tsx|js)"
-        ]
+        "testMatch": ["**/tests/*.(ts|tsx|js)"]
     }
 }

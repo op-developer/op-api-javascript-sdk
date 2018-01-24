@@ -1,4 +1,4 @@
-import * as rp from 'request-promise';
+import axios from 'axios';
 
 import * as validator from '../utils/validator';
 import * as copy from '../utils/copy';
@@ -20,7 +20,7 @@ export class Funds {
             'GET',
             '/funds'
         );
-        return rp(requestOptions);
+        return axios(requestOptions);
     }
     async postSubscription(data: FundOrderRequest, isinCode: String) {
         let requestOptions = await copy.modifyOptions(
@@ -29,7 +29,7 @@ export class Funds {
             sprintf('/funds/%s/subscriptions', isinCode),
             data
         );
-        return rp(requestOptions);
+        return axios(requestOptions);
     }
     async postRedemption(data: FundOrderRequest, isinCode: String) {
         let requestOptions = await copy.modifyOptions(
@@ -38,6 +38,6 @@ export class Funds {
             sprintf('/funds/%s/redemptions', isinCode),
             data
         );
-        return rp(requestOptions);
+        return axios(requestOptions);
     }
 }

@@ -1,4 +1,4 @@
-import * as rp from 'request-promise';
+import axios from 'axios';
 
 import * as copy from '../utils/copy';
 import * as validator from '../utils/validator';
@@ -17,7 +17,7 @@ export class Payments {
             '/payments/initiate',
             body
         );
-        return rp(requestOptions);
+        return axios(requestOptions);
     }
     async paymentConfirm(body: PaymentConfirmData) {
         let requestOptions = await copy.modifyOptions(
@@ -26,6 +26,6 @@ export class Payments {
             '/payments/confirm',
             body
         );
-        return rp(requestOptions);
+        return axios(requestOptions);
     }
 }

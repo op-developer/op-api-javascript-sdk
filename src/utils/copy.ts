@@ -12,8 +12,8 @@ export function modifyOptions(
     data?: object
 ) {
     let requestOptions = copyObject(options);
-    requestOptions['uri'] = uri;
+    requestOptions['url'] = uri;
     requestOptions['method'] = method;
-    requestOptions['body'] = data;
+    requestOptions['data'] = data;
     return requestOptions;
 }
