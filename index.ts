@@ -17,10 +17,9 @@ export class Client {
             headers: {
                 'x-api-key': ''
             },
-            baseUrl: sprintf('%s/%s', config.API.baseUrl, config.API.version),
+            baseURL: sprintf('%s/%s', config.API.baseUrl, config.API.version),
             timeout: config.API.timeout,
-            uri: '',
-            json: true
+            responseType: 'json'
         };
         this.options = objectAssignDeep({}, defaultOptions, options);
     }
