@@ -1,16 +1,15 @@
 import axios from 'axios';
 
-import * as validator from '../utils/validator';
 import * as copy from '../utils/copy';
-import { AccountType, Transaction } from '../utils/dataSchemas';
+import { Options } from '../utils/dataSchemas';
 
-export class Accounts {
-    options: any;
-    constructor(options: any) {
+export default class Accounts {
+    options: Options;
+    constructor(options: Options) {
         this.options = options;
     }
     async getAllAccounts() {
-        let requestOptions = await copy.modifyOptions(
+        const requestOptions = await copy.modifyOptions(
             this.options,
             'GET',
             '/accounts'
@@ -18,7 +17,7 @@ export class Accounts {
         return axios(requestOptions);
     }
     async getAccountById(accountId: String) {
-        let requestOptions = await copy.modifyOptions(
+        const requestOptions = await copy.modifyOptions(
             this.options,
             'GET',
             `/accounts/${accountId}`
@@ -26,7 +25,7 @@ export class Accounts {
         return axios(requestOptions);
     }
     async getAccountsTransactions(accountId: String) {
-        let requestOptions = await copy.modifyOptions(
+        const requestOptions = await copy.modifyOptions(
             this.options,
             'GET',
             `/accounts/${accountId}/transactions`
@@ -34,7 +33,7 @@ export class Accounts {
         return axios(requestOptions);
     }
     async getAccountTransactionsById(accountId: String, transactionId: String) {
-        let requestOptions = await copy.modifyOptions(
+        const requestOptions = await copy.modifyOptions(
             this.options,
             'GET',
             `/accounts/${accountId}/transactions/${transactionId}`

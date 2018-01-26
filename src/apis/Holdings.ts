@@ -1,16 +1,15 @@
 import axios from 'axios';
 
 import * as copy from '../utils/copy';
-import * as validator from '../utils/validator';
-import { Holding } from '../utils/dataSchemas';
+import { Options } from '../utils/dataSchemas';
 
-export class Holdings {
-    options: any;
-    constructor(options: any) {
+export default class Holdings {
+    options: Options;
+    constructor(options: Options) {
         this.options = options;
     }
     async getHoldings() {
-        let requestOptions = await copy.modifyOptions(
+        const requestOptions = await copy.modifyOptions(
             this.options,
             'GET',
             '/holdings'
