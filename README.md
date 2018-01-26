@@ -8,7 +8,7 @@
 
 You need to use headers on every request. See [requests](https://op-developer.fi/docs/#user-content-requests)
 
-    const SDK = require('path_to_root')
+    const SDK = require('@op/op-api-sdk')
 
     const options = {
         headers: {
