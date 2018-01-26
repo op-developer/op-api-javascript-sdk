@@ -1,5 +1,5 @@
 {
-    "name": "@op/op-api-sdk",
+    "name": "@op/api-sdk",
     "version": "1.0.0",
     "description": "Simple SDK for accessing OP APIs",
     "homepage": "https://github.com/op-developer/op-api-javascript-sdk",
