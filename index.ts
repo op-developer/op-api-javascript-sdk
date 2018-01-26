@@ -1,9 +1,9 @@
 const objectAssignDeep = require(`object-assign-deep`);
 
-import { Funds } from './src/apis/Funds';
-import { Holdings } from './src/apis/Holdings';
-import { Accounts } from './src/apis/Accounts';
-import { Payments } from './src/apis/payments';
+import Funds from './src/apis/Funds';
+import Holdings from './src/apis/Holdings';
+import Accounts from './src/apis/Accounts';
+import Payments from './src/apis/Payments';
 import * as dataSchemas from './src/utils/DataSchemas';
 
 const config = require('../config.json');
@@ -14,7 +14,7 @@ export class Client {
      * Initiate client instance
      * @param options Optional. Set options for HTTP requests
      */
-    constructor(options?: object) {
+    constructor(options?: dataSchemas.Options) {
         const defaultOptions = {
             headers: {
                 'x-api-key': ''
@@ -47,7 +47,7 @@ export class Client {
      * @param accountId Account id
      * @param options Optional. Set options for HTTP requests
      */
-    getAccountsTransactions(accountId: String, options?: dataSchemas.Options) {
+    getAccountTransactions(accountId: String, options?: dataSchemas.Options) {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Accounts(requestOptions).getAccountsTransactions(accountId);
     }
