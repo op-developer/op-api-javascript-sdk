@@ -1,7 +1,7 @@
 {
     "name": "@op/op-api-sdk",
     "version": "1.0.0",
-    "description": "SDK for OP API",
+    "description": "Simple SDK for accessing OP APIs",
     "homepage": "https://github.com/op-developer/op-api-javascript-sdk",
     "keywords": [],
     "bugs": {
@@ -13,7 +13,10 @@
         "prepare": "npm run -s build",
         "test": "jest"
     },
-    "author": "op-developer",
+    "author": {
+        "name": "op-developer",
+        "url": "https://op-developer.fi"
+    },
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -33,17 +36,11 @@
         "typescript": "^2.6.2"
     },
     "jest": {
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ],
+        "moduleFileExtensions": ["ts", "tsx", "js"],
         "testEnvironment": "node",
         "transform": {
             "^.+\\.(ts|tsx)$": "./preprocessor.js"
         },
-        "testMatch": [
-            "**/tests/*.(ts|tsx|js)"
-        ]
+        "testMatch": ["**/tests/*.(ts|tsx|js)"]
     }
 }
