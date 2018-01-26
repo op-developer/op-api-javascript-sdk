@@ -1,4 +1,3 @@
-import { sprintf } from 'sprintf-js';
 const objectAssignDeep = require(`object-assign-deep`);
 
 import { Funds } from './src/apis/Funds';
@@ -20,7 +19,7 @@ export class Client {
             headers: {
                 'x-api-key': ''
             },
-            baseURL: sprintf('%s/%s', config.API.baseUrl, config.API.version),
+            baseURL: `${config.API.baseUrl}/${config.API.version}`,
             timeout: config.API.timeout,
             responseType: 'json'
         };

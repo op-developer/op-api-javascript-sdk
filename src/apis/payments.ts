@@ -2,7 +2,6 @@ import axios from 'axios';
 
 import * as copy from '../utils/copy';
 import * as validator from '../utils/validator';
-import { sprintf } from 'sprintf-js';
 import { PaymentData, PaymentConfirmData } from '../utils/dataSchemas';
 
 export class Payments {

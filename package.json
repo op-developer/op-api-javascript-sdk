@@ -1,21 +1,28 @@
 {
-    "name": "op-developer-sdk",
+    "name": "@op/op-api-sdk",
     "version": "1.0.0",
-    "description": "SDK for OP-developer API",
+    "description": "SDK for OP API",
+    "homepage": "https://github.com/op-developer/op-api-javascript-sdk",
+    "keywords": [],
+    "bugs": {
+        "url": "https://github.com/op-developer/op-api-javascript-sdk/issues"
+    },
     "main": "./build/index.js",
     "scripts": {
-        "install": "tsc -p .",
         "build": "tsc -p .",
+        "prepare": "npm run -s build",
         "test": "jest"
     },
-    "author": "",
-    "license": "ISC",
+    "author": "op-developer",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/op-developer/op-api-javascript-sdk.git"
+    },
     "dependencies": {
         "@types/axios": "^0.14.0",
-        "@types/sprintf-js": "^1.1.0",
         "axios": "^0.17.1",
-        "object-assign-deep": "^0.3.1",
-        "sprintf-js": "^1.1.1"
+        "object-assign-deep": "^0.3.1"
     },
     "devDependencies": {
         "@types/chai": "^4.1.1",
@@ -26,11 +33,17 @@
         "typescript": "^2.6.2"
     },
     "jest": {
-        "moduleFileExtensions": ["ts", "tsx", "js"],
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ],
         "testEnvironment": "node",
         "transform": {
             "^.+\\.(ts|tsx)$": "./preprocessor.js"
         },
-        "testMatch": ["**/tests/*.(ts|tsx|js)"]
+        "testMatch": [
+            "**/tests/*.(ts|tsx|js)"
+        ]
     }
 }

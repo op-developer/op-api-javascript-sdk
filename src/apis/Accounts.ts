@@ -2,7 +2,6 @@ import axios from 'axios';
 
 import * as validator from '../utils/validator';
 import * as copy from '../utils/copy';
-import { sprintf } from 'sprintf-js';
 import { AccountType, Transaction } from '../utils/dataSchemas';
 
 export class Accounts {
@@ -22,7 +21,7 @@ export class Accounts {
         let requestOptions = await copy.modifyOptions(
             this.options,
             'GET',
-            sprintf('/accounts/%s', accountId)
+            `/accounts/${accountId}`
         );
         return axios(requestOptions);
     }
@@ -30,7 +29,7 @@ export class Accounts {
         let requestOptions = await copy.modifyOptions(
             this.options,
             'GET',
-            sprintf('/accounts/%s/transactions', accountId)
+            `/accounts/${accountId}/transactions`
         );
         return axios(requestOptions);
     }
@@ -38,7 +37,7 @@ export class Accounts {
         let requestOptions = await copy.modifyOptions(
             this.options,
             'GET',
-            sprintf('/accounts/%s/transactions/%s', accountId, transactionId)
+            `/accounts/${accountId}/transactions/${transactionId}`
         );
         return axios(requestOptions);
     }

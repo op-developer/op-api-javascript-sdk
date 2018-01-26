@@ -2,7 +2,6 @@ import axios from 'axios';
 
 import * as validator from '../utils/validator';
 import * as copy from '../utils/copy';
-import { sprintf } from 'sprintf-js';
 import {
     Fund,
     FundOrderRequest,
@@ -26,7 +25,7 @@ export class Funds {
         let requestOptions = await copy.modifyOptions(
             this.options,
             'POST',
-            sprintf('/funds/%s/subscriptions', isinCode),
+            `/funds/${isinCode}/subscriptions`,
             data
         );
         return axios(requestOptions);
@@ -35,7 +34,7 @@ export class Funds {
         let requestOptions = await copy.modifyOptions(
             this.options,
             'POST',
-            sprintf('/funds/%s/redemptions', isinCode),
+            `/funds/${isinCode}/redemptions`,
             data
         );
         return axios(requestOptions);
