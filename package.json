@@ -11,7 +11,7 @@
     "scripts": {
         "build": "tsc -p .",
         "prepare": "npm run -s build",
-        "test": "jest"
+        "test": "npm run -s build && jest"
     },
     "author": {
         "name": "OP-Developer",
