@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import 'mocha';
 
-import { Client } from '../';
+import Client from '../';
 
 const headers = {
     'x-request-id': 'x-request-id',

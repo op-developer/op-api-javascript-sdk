@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import 'mocha';
 
-import { Client } from '../';
+import Client from '../';
 
 const headers = {
     'x-request-id': 'x-request-id',
@@ -37,7 +37,7 @@ describe('Accounts', () => {
     });
     it('Should return transactions from accountId "5189f37b439bd02462e196e206d0318f094fca82"', done => {
         client
-            .getAccountsTransactions('5189f37b439bd02462e196e206d0318f094fca82')
+            .getAccountTransactions('5189f37b439bd02462e196e206d0318f094fca82')
             .then(transactions => {
                 chai.expect(transactions.data).length.to.be.above(0);
                 chai
