@@ -6,7 +6,7 @@ import Accounts from './src/apis/Accounts';
 import Payments from './src/apis/Payments';
 import * as dataSchemas from './src/utils/DataSchemas';
 
-const config = require('../config.json');
+const config = require('./config');
 
 export class Client {
     options: dataSchemas.Options;
@@ -19,8 +19,8 @@ export class Client {
             headers: {
                 'x-api-key': ''
             },
-            baseURL: `${config.API.baseUrl}/${config.API.version}`,
-            timeout: config.API.timeout,
+            baseURL: `${config.baseUrl}/${config.version}`,
+            timeout: config.timeout,
             responseType: 'json'
         };
         this.options = objectAssignDeep({}, defaultOptions, options);
