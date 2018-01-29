@@ -7,7 +7,7 @@ export default class Payments {
     constructor(options: Options) {
         this.options = options;
     }
-    async paymentInitiate(body: PaymentData) {
+    async initiate(body: PaymentData) {
         const requestOptions = Object.assign({}, this.options, {
             method: 'POST',
             url: '/payments/initiate',
@@ -15,7 +15,7 @@ export default class Payments {
         });
         return axios(requestOptions);
     }
-    async paymentConfirm(body: PaymentConfirmData) {
+    async confirm(body: PaymentConfirmData) {
         const requestOptions = Object.assign({}, this.options, {
             method: 'POST',
             url: '/payments/confirm',
