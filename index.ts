@@ -31,7 +31,7 @@ export class Client {
      */
     getAllAccounts(options?: dataSchemas.Options) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Accounts(requestOptions).getAllAccounts();
+        return new Accounts(requestOptions).getAll();
     }
     /**
      * Get account by account id
@@ -40,7 +40,7 @@ export class Client {
      */
     getAccountById(accountId: String, options?: dataSchemas.Options) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Accounts(requestOptions).getAccountById(accountId);
+        return new Accounts(requestOptions).getById(accountId);
     }
     /**
      * Get account's transactions
@@ -49,7 +49,7 @@ export class Client {
      */
     getAccountTransactions(accountId: String, options?: dataSchemas.Options) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Accounts(requestOptions).getAccountsTransactions(accountId);
+        return new Accounts(requestOptions).getTransactions(accountId);
     }
     /**
      * Get single transaction.
@@ -63,7 +63,7 @@ export class Client {
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Accounts(requestOptions).getAccountTransactionsById(
+        return new Accounts(requestOptions).getTransactionsById(
             accountId,
             transactionId
         );
@@ -122,7 +122,7 @@ export class Client {
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Payments(requestOptions).paymentInitiate(body);
+        return new Payments(requestOptions).initiate(body);
     }
     /**
      * Confirms initiated payment.
@@ -134,6 +134,6 @@ export class Client {
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Payments(requestOptions).paymentConfirm(body);
+        return new Payments(requestOptions).confirm(body);
     }
 }
