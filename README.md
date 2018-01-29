@@ -2,13 +2,13 @@
 
 ## Installation
 
-    npm install
+    npm install @op/api-sdk
 
 ## Usage
 
 You need to use headers on every request. See [requests](https://op-developer.fi/docs/#user-content-requests)
 
-    const SDK = require('path_to_root')
+    const SDK = require('@op/api-sdk')
 
     const options = {
         headers: {
