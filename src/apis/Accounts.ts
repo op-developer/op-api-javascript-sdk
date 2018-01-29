@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import * as copy from '../utils/copy';
 import { Options } from '../utils/dataSchemas';
 
 export default class Accounts {
@@ -9,35 +8,31 @@ export default class Accounts {
         this.options = options;
     }
     async getAllAccounts() {
-        const requestOptions = await copy.modifyOptions(
-            this.options,
-            'GET',
-            '/accounts'
-        );
+        const requestOptions = Object.assign({}, this.options, {
+            method: 'GET',
+            url: '/accounts'
+        });
         return axios(requestOptions);
     }
     async getAccountById(accountId: String) {
-        const requestOptions = await copy.modifyOptions(
-            this.options,
-            'GET',
-            `/accounts/${accountId}`
-        );
+        const requestOptions = Object.assign({}, this.options, {
+            method: 'GET',
+            url: `/accounts/${accountId}`
+        });
         return axios(requestOptions);
     }
     async getAccountsTransactions(accountId: String) {
-        const requestOptions = await copy.modifyOptions(
-            this.options,
-            'GET',
-            `/accounts/${accountId}/transactions`
-        );
+        const requestOptions = Object.assign({}, this.options, {
+            method: 'GET',
+            url: `/accounts/${accountId}/transactions`
+        });
         return axios(requestOptions);
     }
     async getAccountTransactionsById(accountId: String, transactionId: String) {
-        const requestOptions = await copy.modifyOptions(
-            this.options,
-            'GET',
-            `/accounts/${accountId}/transactions/${transactionId}`
-        );
+        const requestOptions = Object.assign({}, this.options, {
+            method: 'GET',
+            url: `/accounts/${accountId}/transactions/${transactionId}`
+        });
         return axios(requestOptions);
     }
 }

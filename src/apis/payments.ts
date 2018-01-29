@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import * as copy from '../utils/copy';
 import { PaymentData, PaymentConfirmData, Options } from '../utils/dataSchemas';
 
 export default class Payments {
@@ -9,21 +8,19 @@ export default class Payments {
         this.options = options;
     }
     async paymentInitiate(body: PaymentData) {
-        const requestOptions = await copy.modifyOptions(
-            this.options,
-            'POST',
-            '/payments/initiate',
-            body
-        );
+        const requestOptions = Object.assign({}, this.options, {
+            method: 'POST',
+            url: '/payments/initiate',
+            data: body
+        });
         return axios(requestOptions);
     }
     async paymentConfirm(body: PaymentConfirmData) {
-        const requestOptions = await copy.modifyOptions(
-            this.options,
-            'POST',
-            '/payments/confirm',
-            body
-        );
+        const requestOptions = Object.assign({}, this.options, {
+            method: 'POST',
+            url: '/payments/confirm',
+            data: body
+        });
         return axios(requestOptions);
     }
 }

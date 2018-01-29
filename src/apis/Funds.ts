@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import * as copy from '../utils/copy';
 import { FundOrderRequest, Options } from '../utils/dataSchemas';
 
 export default class Funds {
@@ -9,29 +8,26 @@ export default class Funds {
         this.options = options;
     }
     async getFunds() {
-        const requestOptions = await copy.modifyOptions(
-            this.options,
-            'GET',
-            '/funds'
-        );
+        const requestOptions = Object.assign({}, this.options, {
+            method: 'GET',
+            url: '/funds'
+        });
         return axios(requestOptions);
     }
     async postSubscription(data: FundOrderRequest, isinCode: String) {
-        const requestOptions = await copy.modifyOptions(
-            this.options,
-            'POST',
-            `/funds/${isinCode}/subscriptions`,
-            data
-        );
+        const requestOptions = Object.assign({}, this.options, {
+            method: 'POST',
+            url: `/funds/${isinCode}/subscriptions`,
+            data: data
+        });
         return axios(requestOptions);
     }
     async postRedemption(data: FundOrderRequest, isinCode: String) {
-        const requestOptions = await copy.modifyOptions(
-            this.options,
-            'POST',
-            `/funds/${isinCode}/redemptions`,
-            data
-        );
+        const requestOptions = Object.assign({}, this.options, {
+            method: 'POST',
+            url: `/funds/${isinCode}/redemptions`,
+            data: data
+        });
         return axios(requestOptions);
     }
 }
