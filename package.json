@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Simple SDK for accessing OP APIs",
     "homepage": "https://github.com/op-developer/op-api-javascript-sdk",
-    "keywords": [],
+    "keywords": ["OP API", "OP-Developer", "OPEN OP", "OP SDK"],
     "bugs": {
         "url": "https://github.com/op-developer/op-api-javascript-sdk/issues"
     },
