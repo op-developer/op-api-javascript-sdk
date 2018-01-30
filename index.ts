@@ -138,16 +138,60 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Payments(requestOptions).confirm(body);
     }
-    getBranches(options: dataSchemas.Options) {
+    /**
+     * Find OP branch offices as JSON or GeoJSON
+     * @param bbody Bounding Box filter by coordinates of southwest and northeast point: sw-lon, sw-lat, ne-lon, ne-lat
+     * @param location Coordinates of location for sorting the results from nearest to farthest: lon, lat
+     * @param query Free-text search terms
+     * @param options Optional. Set options for HTTP requests
+     */
+    getBranches(
+        bbody?: string,
+        location?: string,
+        query?: string,
+        options?: dataSchemas.Options
+    ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Mobility(requestOptions).getBranches();
+        return new Mobility(requestOptions).getBranches(bbody, location, query);
     }
-    getBranchesAsJson(options: dataSchemas.Options) {
+    /**
+     * Find OP branch offices as JSON
+     * @param bbody Bounding Box filter by coordinates of southwest and northeast point: sw-lon, sw-lat, ne-lon, ne-lat
+     * @param location Coordinates of location for sorting the results from nearest to farthest: lon, lat
+     * @param query Free-text search terms
+     * @param options Optional. Set options for HTTP requests
+     */
+    getBranchesAsJson(
+        bbody?: string,
+        location?: string,
+        query?: string,
+        options?: dataSchemas.Options
+    ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Mobility(requestOptions).getBranchesAsJson();
+        return new Mobility(requestOptions).getBranchesAsJson(
+            bbody,
+            location,
+            query
+        );
     }
-    getBranchesAsGeoJson(options: dataSchemas.Options) {
+    /**
+     * Find OP branch offices as GeoJSON
+     * @param bbody Bounding Box filter by coordinates of southwest and northeast point: sw-lon, sw-lat, ne-lon, ne-lat
+     * @param location Coordinates of location for sorting the results from nearest to farthest: lon, lat
+     * @param query Free-text search terms
+     * @param options Optional. Set options for HTTP requests
+     */
+    getBranchesAsGeoJson(
+        bbody?: string,
+        location?: string,
+        query?: string,
+        options?: dataSchemas.Options
+    ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Mobility(requestOptions).getBranchesAsGeoJson();
+        return new Mobility(requestOptions).getBranchesAsGeoJson(
+            bbody,
+            location,
+            query
+        );
     }
 }
