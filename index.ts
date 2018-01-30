@@ -5,6 +5,7 @@ import Holdings from './src/apis/Holdings';
 import Accounts from './src/apis/Accounts';
 import Payments from './src/apis/Payments';
 import * as dataSchemas from './src/utils/DataSchemas';
+import Mobility from './src/apis/Mobility';
 
 const config = require('./config');
 
@@ -19,7 +20,8 @@ export class Client {
             headers: {
                 'x-api-key': ''
             },
-            baseURL: `${config.baseUrl}/${config.version}`,
+            baseURL: `${config.baseUrl}`,
+            version: `${config.version}`,
             timeout: config.timeout,
             responseType: 'json'
         };
@@ -135,5 +137,17 @@ export class Client {
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Payments(requestOptions).confirm(body);
+    }
+    getBranches(options: dataSchemas.Options) {
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Mobility(requestOptions).getBranches();
+    }
+    getBranchesAsJson(options: dataSchemas.Options) {
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Mobility(requestOptions).getBranchesAsJson();
+    }
+    getBranchesAsGeoJson(options: dataSchemas.Options) {
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Mobility(requestOptions).getBranchesAsGeoJson();
     }
 }
