@@ -10,14 +10,14 @@ export default class Funds {
     async getFunds() {
         const requestOptions = Object.assign({}, this.options, {
             method: 'GET',
-            url: '/funds'
+            url: `/${this.options.version}/funds`
         });
         return axios(requestOptions);
     }
     async postSubscription(data: FundOrderRequest, isinCode: String) {
         const requestOptions = Object.assign({}, this.options, {
             method: 'POST',
-            url: `/funds/${isinCode}/subscriptions`,
+            url: `/${this.options.version}/funds/${isinCode}/subscriptions`,
             data: data
         });
         return axios(requestOptions);
@@ -25,7 +25,7 @@ export default class Funds {
     async postRedemption(data: FundOrderRequest, isinCode: String) {
         const requestOptions = Object.assign({}, this.options, {
             method: 'POST',
-            url: `/funds/${isinCode}/redemptions`,
+            url: `/${this.options.version}/funds/${isinCode}/redemptions`,
             data: data
         });
         return axios(requestOptions);

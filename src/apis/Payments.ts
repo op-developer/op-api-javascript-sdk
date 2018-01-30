@@ -10,7 +10,7 @@ export default class Payments {
     async initiate(body: PaymentData) {
         const requestOptions = Object.assign({}, this.options, {
             method: 'POST',
-            url: '/payments/initiate',
+            url: `/${this.options.version}/payments/initiate`,
             data: body
         });
         return axios(requestOptions);
@@ -18,7 +18,7 @@ export default class Payments {
     async confirm(body: PaymentConfirmData) {
         const requestOptions = Object.assign({}, this.options, {
             method: 'POST',
-            url: '/payments/confirm',
+            url: `/${this.options.version}/payments/confirm`,
             data: body
         });
         return axios(requestOptions);

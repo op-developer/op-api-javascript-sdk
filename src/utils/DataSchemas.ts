@@ -77,6 +77,7 @@ export interface Options {
     headers?: Headers;
     baseUrl?: String;
     uri?: String;
+    version?: String;
     json?: boolean;
     timeout?: number;
 }

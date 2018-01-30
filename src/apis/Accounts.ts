@@ -10,28 +10,30 @@ export default class Accounts {
     async getAll() {
         const requestOptions = Object.assign({}, this.options, {
             method: 'GET',
-            url: '/accounts'
+            url: `/${this.options.version}/accounts`
         });
         return axios(requestOptions);
     }
     async getById(accountId: String) {
         const requestOptions = Object.assign({}, this.options, {
             method: 'GET',
-            url: `/accounts/${accountId}`
+            url: `/${this.options.version}/accounts/${accountId}`
         });
         return axios(requestOptions);
     }
     async getTransactions(accountId: String) {
         const requestOptions = Object.assign({}, this.options, {
             method: 'GET',
-            url: `/accounts/${accountId}/transactions`
+            url: `/${this.options.version}/accounts/${accountId}/transactions`
         });
         return axios(requestOptions);
     }
     async getTransactionsById(accountId: String, transactionId: String) {
         const requestOptions = Object.assign({}, this.options, {
             method: 'GET',
-            url: `/accounts/${accountId}/transactions/${transactionId}`
+            url: `/${
+                this.options.version
+            }/accounts/${accountId}/transactions/${transactionId}`
         });
         return axios(requestOptions);
     }

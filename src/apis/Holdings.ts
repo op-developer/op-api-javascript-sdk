@@ -10,7 +10,7 @@ export default class Holdings {
     async getHoldings() {
         const requestOptions = Object.assign({}, this.options, {
             method: 'GET',
-            url: '/holdings'
+            url: `/${this.options.version}/holdings`
         });
         return axios(requestOptions);
     }
