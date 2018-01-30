@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { FundOrderRequest, Options } from '../utils/dataSchemas';
+import { FundOrderRequest, Options } from '../utils/DataSchemas';
 
 export default class Funds {
     options: Options;

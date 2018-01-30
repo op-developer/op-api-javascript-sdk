@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { PaymentData, PaymentConfirmData, Options } from '../utils/dataSchemas';
+import { PaymentData, PaymentConfirmData, Options } from '../utils/DataSchemas';
 
 export default class Payments {
     options: Options;

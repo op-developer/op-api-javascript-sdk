@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Options } from '../utils/dataSchemas';
+import { Options } from '../utils/DataSchemas';
 
 export default class Holdings {
     options: Options;
