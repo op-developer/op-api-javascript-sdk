@@ -1,14 +1,9 @@
 {
     "name": "@op/api-sdk",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "Simple SDK for accessing OP APIs",
     "homepage": "https://github.com/op-developer/op-api-javascript-sdk",
-    "keywords": [
-        "OP API",
-        "OP-Developer",
-        "OPEN OP",
-        "OP SDK"
-    ],
+    "keywords": ["OP API", "OP-Developer", "OPEN OP", "OP SDK"],
     "bugs": {
         "url": "https://github.com/op-developer/op-api-javascript-sdk/issues"
     },
@@ -41,17 +36,11 @@
         "typescript": "^2.6.2"
     },
     "jest": {
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ],
+        "moduleFileExtensions": ["ts", "tsx", "js"],
         "testEnvironment": "node",
         "transform": {
             "^.+\\.(ts|tsx)$": "./preprocessor.js"
         },
-        "testMatch": [
-            "**/tests/*.(ts|tsx|js)"
-        ]
+        "testMatch": ["**/tests/*.(ts|tsx|js)"]
     }
 }
