@@ -8,12 +8,12 @@ export default class Mobility {
         this.options = options;
     }
     async getBranches(
-        bbody: string = '',
+        bbox: string = '',
         location: string = '',
         query: string = ''
     ) {
         const queryString = qs.stringify({
-            bbody: bbody,
+            bbox: bbox,
             location: location,
             query: query
         });
@@ -24,12 +24,12 @@ export default class Mobility {
         return axios(requestOptions);
     }
     async getBranchesAsJson(
-        bbody: string = '',
+        bbox: string = '',
         location: string = '',
         query: string = ''
     ) {
         const queryString = qs.stringify({
-            bbody: bbody,
+            bbox: bbox,
             location: location,
             query: query
         });
@@ -42,12 +42,12 @@ export default class Mobility {
         return axios(requestOptions);
     }
     async getBranchesAsGeoJson(
-        bbody: string = '',
+        bbox: string = '',
         location: string = '',
         query: string = ''
     ) {
         const queryString = qs.stringify({
-            bbody: bbody,
+            bbox: bbox,
             location: location,
             query: query
         });

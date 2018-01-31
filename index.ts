@@ -11,6 +11,7 @@ const config = require('./config');
 
 export class Client {
     options: dataSchemas.Options;
+
     /**
      * Initiate client instance
      * @param options Optional. Set options for HTTP requests
@@ -27,6 +28,7 @@ export class Client {
         };
         this.options = objectAssignDeep({}, defaultOptions, options);
     }
+
     /**
      * Get all accounts
      * @param options Optional. Set options for HTTP requests
@@ -35,6 +37,7 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Accounts(requestOptions).getAll();
     }
+
     /**
      * Get account by account id
      * @param accountId Account id
@@ -44,6 +47,7 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Accounts(requestOptions).getById(accountId);
     }
+
     /**
      * Get account's transactions
      * @param accountId Account id
@@ -53,6 +57,7 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Accounts(requestOptions).getTransactions(accountId);
     }
+
     /**
      * Get single transaction.
      * @param accountId Account id
@@ -70,6 +75,7 @@ export class Client {
             transactionId
         );
     }
+
     /**
      * Get information of all available funds
      * @param options Optional. Set options for HTTP requests
@@ -78,6 +84,7 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Funds(requestOptions).getFunds();
     }
+
     /**
      * Get customers holdings of funds.
      * @param options Optional. Set options for HTTP requests
@@ -86,6 +93,7 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Holdings(requestOptions).getHoldings();
     }
+
     /**
      * Post subscription order ie. buy funds
      * @param body Body of order
@@ -100,6 +108,7 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Funds(requestOptions).postSubscription(body, isinCode);
     }
+
     /**
      * Post redemption order ie. sell funds
      * @param body Body of order
@@ -114,6 +123,7 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Funds(requestOptions).postRedemption(body, isinCode);
     }
+
     /**
      * Initiate payment with payment information. Returns payment with confirmation id.
      * @param body Body of payment
@@ -126,6 +136,7 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Payments(requestOptions).initiate(body);
     }
+
     /**
      * Confirms initiated payment.
      * @param body Body of payment
@@ -138,58 +149,61 @@ export class Client {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Payments(requestOptions).confirm(body);
     }
+
     /**
      * Find OP branch offices as JSON or GeoJSON
-     * @param bbody Bounding Box filter by coordinates of southwest and northeast point: sw-lon, sw-lat, ne-lon, ne-lat
+     * @param bbox Bounding Box filter by coordinates of southwest and northeast point: sw-lon, sw-lat, ne-lon, ne-lat
      * @param location Coordinates of location for sorting the results from nearest to farthest: lon, lat
      * @param query Free-text search terms
      * @param options Optional. Set options for HTTP requests
      */
     getBranches(
-        bbody?: string,
+        bbox?: string,
         location?: string,
         query?: string,
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Mobility(requestOptions).getBranches(bbody, location, query);
+        return new Mobility(requestOptions).getBranches(bbox, location, query);
     }
+
     /**
      * Find OP branch offices as JSON
-     * @param bbody Bounding Box filter by coordinates of southwest and northeast point: sw-lon, sw-lat, ne-lon, ne-lat
+     * @param bbox Bounding Box filter by coordinates of southwest and northeast point: sw-lon, sw-lat, ne-lon, ne-lat
      * @param location Coordinates of location for sorting the results from nearest to farthest: lon, lat
      * @param query Free-text search terms
      * @param options Optional. Set options for HTTP requests
      */
     getBranchesAsJson(
-        bbody?: string,
+        bbox?: string,
         location?: string,
         query?: string,
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Mobility(requestOptions).getBranchesAsJson(
-            bbody,
+            bbox,
             location,
             query
         );
     }
+
     /**
      * Find OP branch offices as GeoJSON
-     * @param bbody Bounding Box filter by coordinates of southwest and northeast point: sw-lon, sw-lat, ne-lon, ne-lat
+     * @param bbox Bounding Box filter by coordinates of southwest and northeast point: sw-lon, sw-lat, ne-lon, ne-lat
      * @param location Coordinates of location for sorting the results from nearest to farthest: lon, lat
      * @param query Free-text search terms
      * @param options Optional. Set options for HTTP requests
      */
     getBranchesAsGeoJson(
-        bbody?: string,
+        bbox?: string,
         location?: string,
         query?: string,
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Mobility(requestOptions).getBranchesAsGeoJson(
-            bbody,
+            bbox,
             location,
             query
         );
