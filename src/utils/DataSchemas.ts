@@ -75,8 +75,8 @@ export interface PaymentConfirmData {
 
 export interface Options {
     headers?: Headers;
-    baseUrl?: String;
-    uri?: String;
+    baseURL?: String;
+    url?: String;
     version?: String;
     json?: boolean;
     timeout?: number;

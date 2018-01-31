@@ -12,14 +12,10 @@ export default class Mobility {
         location: string = '',
         query: string = ''
     ) {
-        const queryString = qs.stringify({
-            bbox: bbox,
-            location: location,
-            query: query
-        });
+        const queryString = makeQueryString([bbox, location, query]);
         const requestOptions = Object.assign({}, this.options, {
             method: 'GET',
-            url: `/mobility/${this.options.version}/branches?${queryString}`
+            url: `/mobility/${this.options.version}/branches${queryString}`
         });
         return axios(requestOptions);
     }
@@ -28,16 +24,10 @@ export default class Mobility {
         location: string = '',
         query: string = ''
     ) {
-        const queryString = qs.stringify({
-            bbox: bbox,
-            location: location,
-            query: query
-        });
+        const queryString = makeQueryString([bbox, location, query]);
         const requestOptions = Object.assign({}, this.options, {
             method: 'GET',
-            url: `/mobility/${
-                this.options.version
-            }/branches.json?${queryString}`
+            url: `/mobility/${this.options.version}/branches.json${queryString}`
         });
         return axios(requestOptions);
     }
@@ -46,17 +36,26 @@ export default class Mobility {
         location: string = '',
         query: string = ''
     ) {
-        const queryString = qs.stringify({
-            bbox: bbox,
-            location: location,
-            query: query
-        });
+        const queryString = makeQueryString([bbox, location, query]);
         const requestOptions = Object.assign({}, this.options, {
             method: 'GET',
             url: `/mobility/${
                 this.options.version
-            }/branches.geojson?${queryString}`
+            }/branches.geojson${queryString}`
         });
         return axios(requestOptions);
     }
+}
+
+function makeQueryString(parameters: Array<string>) {
+    let queryString = '?';
+    const keys = ['bbox', 'location', 'query'];
+    for (let index in parameters) {
+        if (parameters[index] && parameters[index].length > 0) {
+            queryString += keys[index] + '=' + parameters[index];
+            queryString += '&';
+        }
+    }
+    queryString = queryString.substring(0, queryString.length - 1);
+    return queryString;
 }

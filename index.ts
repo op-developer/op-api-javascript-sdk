@@ -21,8 +21,8 @@ export class Client {
             headers: {
                 'x-api-key': ''
             },
-            baseURL: `${config.baseUrl}`,
-            version: `${config.version}`,
+            baseURL: config.baseUrl,
+            version: config.version,
             timeout: config.timeout,
             responseType: 'json'
         };
