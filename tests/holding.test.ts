@@ -14,9 +14,9 @@ const client = new Client({ headers });
 describe('Holdings', () => {
     it('Should return all holdings from user', done => {
         client.getHoldings().then(holdings => {
-            chai.expect(holdings.data).to.have.property('id');
-            chai.expect(holdings.data).to.have.property('fundHoldings');
-            chai.expect(holdings.data).to.exist;
+            chai.expect(holdings).to.have.property('id');
+            chai.expect(holdings).to.have.property('fundHoldings');
+            chai.expect(holdings).to.exist;
             done();
         });
     });

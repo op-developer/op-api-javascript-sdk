@@ -1,6 +1,5 @@
-import axios from 'axios';
-
 import { FundOrderRequest, Options } from '../utils/DataSchemas';
+import request from "../utils/request";
 
 export default class Funds {
     options: Options;
@@ -8,26 +7,20 @@ export default class Funds {
         this.options = options;
     }
     async getFunds() {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'GET',
-            url: `/${this.options.version}/funds`
-        });
-        return axios(requestOptions);
+        return request('GET', `/${this.options.version}/funds`, this.options);
     }
     async postSubscription(data: FundOrderRequest, isinCode: String) {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'POST',
-            url: `/${this.options.version}/funds/${isinCode}/subscriptions`,
+        const requestOptions: Options = {
+            ...this.options,
             data: data
-        });
-        return axios(requestOptions);
+        };
+        return request('POST', `/${this.options.version}/funds/${isinCode}/subscriptions`, requestOptions);
     }
     async postRedemption(data: FundOrderRequest, isinCode: String) {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'POST',
-            url: `/${this.options.version}/funds/${isinCode}/redemptions`,
+        const requestOptions: Options = {
+            ...this.options,
             data: data
-        });
-        return axios(requestOptions);
+        };
+        return request('POST', `/${this.options.version}/funds/${isinCode}/redemptions`, requestOptions);
     }
 }

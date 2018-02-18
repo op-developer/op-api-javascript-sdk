@@ -1,6 +1,5 @@
-import axios from 'axios';
-
 import { Options } from '../utils/DataSchemas';
+import request from '../utils/request';
 
 export default class Holdings {
     options: Options;
@@ -8,10 +7,6 @@ export default class Holdings {
         this.options = options;
     }
     async getHoldings() {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'GET',
-            url: `/${this.options.version}/holdings`
-        });
-        return axios(requestOptions);
+        return request('GET', `/${this.options.version}/holdings`, this.options);
     }
 }

@@ -23,31 +23,43 @@ const paymentData = {
 };
 
 describe('Payments', () => {
+    it('should fail with proper error message when x-api-key is missing', async () => {
+        expect.assertions(1);
+        const myHeaders = {...headers};
+        delete myHeaders['x-api-key'];
+        const myClient = new Client({ myHeaders });
+        try {
+            await myClient.postPaymentInitiate(paymentData)
+        } catch(error) {
+            expect(String(error)).toEqual("Error: Request failed with status code 400");
+        }
+    });
+
     it('Should initiate payment and confirm payment', done => {
         client
             .postPaymentInitiate(paymentData)
             .then(paymentInfo => {
-                chai.expect(paymentInfo.data).to.have.property('paymentId');
-                chai.expect(paymentInfo.data).to.have.property('amount');
-                chai.expect(paymentInfo.data).to.have.property('payerIban');
-                chai.expect(paymentInfo.data).to.have.property('receiverIban');
-                return paymentInfo.data.paymentId;
+                chai.expect(paymentInfo).to.have.property('paymentId');
+                chai.expect(paymentInfo).to.have.property('amount');
+                chai.expect(paymentInfo).to.have.property('payerIban');
+                chai.expect(paymentInfo).to.have.property('receiverIban');
+                return paymentInfo.paymentId;
             })
             .then(paymentId => {
                 client
                     .postPaymentConfirm({ paymentId: paymentId })
                     .then(confirmInfo => {
                         chai
-                            .expect(confirmInfo.data)
+                            .expect(confirmInfo)
                             .to.have.property('paymentId');
                         chai
-                            .expect(confirmInfo.data)
+                            .expect(confirmInfo)
                             .to.have.property('amount');
                         chai
-                            .expect(confirmInfo.data)
+                            .expect(confirmInfo)
                             .to.have.property('payerIban');
                         chai
-                            .expect(confirmInfo.data)
+                            .expect(confirmInfo)
                             .to.have.property('receiverIban');
                         done();
                     });

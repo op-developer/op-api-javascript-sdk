@@ -1,6 +1,5 @@
-import axios from 'axios';
-
 import { Options } from '../utils/DataSchemas';
+import request from '../utils/request';
 
 export default class Accounts {
     options: Options;
@@ -8,33 +7,15 @@ export default class Accounts {
         this.options = options;
     }
     async getAll() {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'GET',
-            url: `/${this.options.version}/accounts`
-        });
-        return axios(requestOptions);
+        return request('GET', `/${this.options.version}/accounts`, this.options);
     }
     async getById(accountId: String) {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'GET',
-            url: `/${this.options.version}/accounts/${accountId}`
-        });
-        return axios(requestOptions);
+        return request('GET', `/${this.options.version}/accounts/${accountId}`, this.options);
     }
     async getTransactions(accountId: String) {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'GET',
-            url: `/${this.options.version}/accounts/${accountId}/transactions`
-        });
-        return axios(requestOptions);
+        return request('GET', `/${this.options.version}/accounts/${accountId}/transactions`, this.options);
     }
     async getTransactionsById(accountId: String, transactionId: String) {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'GET',
-            url: `/${
-                this.options.version
-            }/accounts/${accountId}/transactions/${transactionId}`
-        });
-        return axios(requestOptions);
+        return request('GET', `/${this.options.version}/accounts/${accountId}/transactions/${transactionId}`, this.options);
     }
 }
