@@ -30,7 +30,7 @@ You can set request options to client instance.
     const client = new SDK.Client(options)
 
     client.getAllAccounts().then(accounts => {
-            console.log(accounts.data);
+            console.log(accounts);
         }).catch(error => {
             console.log(error);
         })
@@ -40,7 +40,7 @@ You can also set request options to each function individually
     const client = new SDK.Client()
 
     client.getAllAccounts(options).then(accounts => {
-            console.log(accounts.data)
+            console.log(accounts)
         }).catch(error => {
             console.log(error);
         }
@@ -51,6 +51,6 @@ For further reading, please see our API [documentation](https://op-developer.fi/
 ## Developing
 
 ### Running tests
-- register at https://op-developer.fi
-- create app that has access to all sandbox products (Mobility, Banking, etc)
-- run tests with X_API_KEY=<your api key> npm run test  
+- register at https://op-developer.fi/developers/register
+- create an app that has access to all sandbox products (Mobility, Banking, etc)
+- run tests with ```X_API_KEY=<your api key> npm run test```
