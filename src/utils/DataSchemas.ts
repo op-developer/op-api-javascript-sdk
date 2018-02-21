@@ -5,38 +5,38 @@ export interface Holding {
 }
 
 export interface AccountType {
-    accountId?: String;
-    accountType?: String;
-    iban?: String;
-    bic?: String;
-    accountName?: String;
+    accountId?: string;
+    accountType?: string;
+    iban?: string;
+    bic?: string;
+    accountName?: string;
     balance?: number;
     amountAvailable?: number;
-    currency?: String;
-    status?: String;
-    ownerId?: String;
-    ownerName?: String;
+    currency?: string;
+    status?: string;
+    ownerId?: string;
+    ownerName?: string;
 }
 export interface Transaction {
-    valueDate?: String;
-    bookingDate?: String;
+    valueDate?: string;
+    bookingDate?: string;
     amount?: number;
-    currency?: String;
-    message?: String;
-    payerIban?: String;
-    receiverIban: String;
-    type?: String;
-    purpose?: String;
-    accountId?: String;
-    reference?: String;
-    transactionId?: String;
+    currency?: string;
+    message?: string;
+    payerIban?: string;
+    receiverIban: string;
+    type?: string;
+    purpose?: string;
+    accountId?: string;
+    reference?: string;
+    transactionId?: string;
 }
 
 export interface Fund {
-    isinCode?: String;
-    nameOfFund?: String;
+    isinCode?: string;
+    nameOfFund?: string;
     unitPrice?: number;
-    timestamp?: String;
+    timestamp?: string;
     documents?: FundDocument;
 }
 
@@ -51,42 +51,43 @@ export interface FundOrderRequest {
 
 export interface PaymentData {
     amount: number;
-    subject?: String;
-    currency?: String;
-    payerIban: String;
-    paymentId?: String;
-    valueDate?: String;
-    receiverBic?: String;
-    receiverIban: String;
-    receiverName?: String;
+    subject?: string;
+    currency?: string;
+    payerIban: string;
+    paymentId?: string;
+    valueDate?: string;
+    receiverBic?: string;
+    receiverIban: string;
+    receiverName?: string;
 }
 
 export interface PaymentConfirmData {
     amount?: number;
-    subject?: String;
-    currency?: String;
-    payerIban?: String;
-    paymentId: String;
-    valueDate?: String;
-    receiverBic?: String;
-    receiverIban?: String;
-    receiverName?: String;
+    subject?: string;
+    currency?: string;
+    payerIban?: string;
+    paymentId: string;
+    valueDate?: string;
+    receiverBic?: string;
+    receiverIban?: string;
+    receiverName?: string;
 }
 
 export interface Options {
     headers?: Headers;
-    baseURL?: String;
-    url?: String;
-    version?: String;
+    baseURL?: string;
+    url?: string;
+    version?: string;
     json?: boolean;
     timeout?: number;
+    data?: object;
 }
 
 export interface Headers {
-    'x-request-id'?: String;
-    'x-session-id'?: String;
-    'x-authorization'?: String;
-    'x-api-key': String;
+    'x-request-id'?: string;
+    'x-session-id'?: string;
+    'x-authorization'?: string;
+    'x-api-key': string;
 }
 
 interface SumOfAllHoldings {
@@ -96,8 +97,8 @@ interface SumOfAllHoldings {
     changeAsPercentage?: number;
 }
 interface FundHolding {
-    fundName?: String;
-    isinCode?: String;
+    fundName?: string;
+    isinCode?: string;
     marketValue?: number;
     changeOfValue?: number;
     holdingItem?: HoldingItem;
@@ -110,12 +111,12 @@ interface HoldingItem {
 }
 
 interface FundDocument {
-    FUND_BROCHURE?: String;
-    PRICE_LIST?: String;
-    ONLINE_SALES?: String;
-    YEAR_REPORT?: String;
-    QUART_REPORT?: String;
-    WEEK_REPORT?: String;
-    MIDYEAR_REPORT?: String;
-    RULES?: String;
+    FUND_BROCHURE?: string;
+    PRICE_LIST?: string;
+    ONLINE_SALES?: string;
+    YEAR_REPORT?: string;
+    QUART_REPORT?: string;
+    WEEK_REPORT?: string;
+    MIDYEAR_REPORT?: string;
+    RULES?: string;
 }

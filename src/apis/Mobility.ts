@@ -1,6 +1,5 @@
-import axios from 'axios';
-import * as qs from 'querystring';
 import { Options } from '../utils/DataSchemas';
+import request from "../utils/request";
 
 export default class Mobility {
     options: Options;
@@ -13,11 +12,7 @@ export default class Mobility {
         query: string = ''
     ) {
         const queryString = makeQueryString([bbox, location, query]);
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'GET',
-            url: `/mobility/${this.options.version}/branches${queryString}`
-        });
-        return axios(requestOptions);
+        return request('GET', `/mobility/${this.options.version}/branches${queryString}`, this.options);
     }
     async getBranchesAsJson(
         bbox: string = '',
@@ -25,11 +20,7 @@ export default class Mobility {
         query: string = ''
     ) {
         const queryString = makeQueryString([bbox, location, query]);
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'GET',
-            url: `/mobility/${this.options.version}/branches.json${queryString}`
-        });
-        return axios(requestOptions);
+        return request('GET', `/mobility/${this.options.version}/branches.json${queryString}`, this.options);
     }
     async getBranchesAsGeoJson(
         bbox: string = '',
@@ -37,13 +28,7 @@ export default class Mobility {
         query: string = ''
     ) {
         const queryString = makeQueryString([bbox, location, query]);
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'GET',
-            url: `/mobility/${
-                this.options.version
-            }/branches.geojson${queryString}`
-        });
-        return axios(requestOptions);
+        return request('GET', `/mobility/${this.options.version}/branches.geojson${queryString}`, this.options);
     }
 }
 

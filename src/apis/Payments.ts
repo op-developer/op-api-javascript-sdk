@@ -1,4 +1,4 @@
-import axios from 'axios';
+import request from "../utils/request";
 
 import { PaymentData, PaymentConfirmData, Options } from '../utils/DataSchemas';
 
@@ -8,19 +8,17 @@ export default class Payments {
         this.options = options;
     }
     async initiate(body: PaymentData) {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'POST',
-            url: `/${this.options.version}/payments/initiate`,
+        const requestOptions: Options = {
+            ...this.options,
             data: body
-        });
-        return axios(requestOptions);
+        };
+        return request('POST', `/${this.options.version}/payments/initiate`, requestOptions);
     }
     async confirm(body: PaymentConfirmData) {
-        const requestOptions = Object.assign({}, this.options, {
-            method: 'POST',
-            url: `/${this.options.version}/payments/confirm`,
+        const requestOptions: Options = {
+            ...this.options,
             data: body
-        });
-        return axios(requestOptions);
+        };
+        return request('POST', `/${this.options.version}/payments/confirm`, requestOptions);
     }
 }

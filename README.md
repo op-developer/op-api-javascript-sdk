@@ -46,3 +46,11 @@ You can also set request options to each function individually
         }
 
 For further reading, please see our API [documentation](https://op-developer.fi/docs/)
+
+
+## Developing
+
+### Running tests
+- register at https://op-developer.fi
+- create app that has access to all sandbox products (Mobility, Banking, etc)
+- run tests with X_API_KEY=<your api key> npm run test  
