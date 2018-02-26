@@ -1,6 +1,3 @@
-import * as chai from 'chai';
-import 'mocha';
-
 import { Client } from '../';
 
 const headers = {
@@ -21,19 +18,11 @@ const accountId = '07618ad83d7c5d5f2db8908d33b6a9272c5e8d96';
 describe('Funds', () => {
     it('Should get all funds', done => {
         client.getFunds().then(funds => {
-            chai.expect(funds).to.be.an('array');
-            chai
-                .expect(funds)
-                .to.have.nested.property('[0]')
-                .with.property('isinCode');
-            chai
-                .expect(funds)
-                .to.have.nested.property('[0]')
-                .with.property('unitPrice');
-            chai
-                .expect(funds)
-                .to.have.nested.property('[0]')
-                .with.property('nameOfFund');
+            expect(Array.isArray(funds)).toBe(true);
+            expect(funds[0]).toBeDefined();
+            expect(funds[0]).toHaveProperty('isinCode');
+            expect(funds[0]).toHaveProperty('unitPrice');
+            expect(funds[0]).toHaveProperty('nameOfFund');
             done();
         });
     });
@@ -41,10 +30,10 @@ describe('Funds', () => {
         client
             .postSubscription(subscription, 'FI0008800248')
             .then(subscriptionInfo => {
-                chai
-                    .expect(subscriptionInfo)
-                    .to.have.property('subscription')
-                    .and.to.have.nested.property('orderIdentifier');
+                expect(subscriptionInfo).toHaveProperty('subscription');
+                expect(subscriptionInfo['subscription']).toHaveProperty(
+                    'orderIdentifier'
+                );
                 done();
             });
     });
@@ -52,10 +41,10 @@ describe('Funds', () => {
         client
             .postRedemption(subscription, 'FI0008800248')
             .then(redemptionInfo => {
-                chai
-                    .expect(redemptionInfo)
-                    .to.have.property('subscription')
-                    .and.to.have.nested.property('redemptionIdentifier');
+                expect(redemptionInfo).toHaveProperty('subscription');
+                expect(redemptionInfo['subscription']).toHaveProperty(
+                    'redemptionIdentifier'
+                );
                 done();
             });
     });

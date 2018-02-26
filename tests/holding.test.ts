@@ -1,6 +1,3 @@
-import * as chai from 'chai';
-import 'mocha';
-
 import { Client } from '../';
 
 const headers = {
@@ -14,9 +11,9 @@ const client = new Client({ headers });
 describe('Holdings', () => {
     it('Should return all holdings from user', done => {
         client.getHoldings().then(holdings => {
-            chai.expect(holdings).to.have.property('id');
-            chai.expect(holdings).to.have.property('fundHoldings');
-            chai.expect(holdings).to.exist;
+            expect(holdings).toBeDefined();
+            expect(holdings).toHaveProperty('id');
+            expect(holdings).toHaveProperty('fundHoldings');
             done();
         });
     });

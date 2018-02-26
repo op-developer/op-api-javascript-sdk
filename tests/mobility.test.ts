@@ -1,6 +1,3 @@
-import * as chai from 'chai';
-import 'mocha';
-
 import { Client } from '../';
 
 const headers = {
@@ -15,50 +12,50 @@ describe('Mobility', () => {
     it('Should get all branches', done => {
         client.getBranches().then(branches => {
             const branchesArray = branches['payload'];
-            chai.expect(branchesArray).to.exist;
-            chai.expect(branchesArray[0]).to.have.property('_id');
-            chai.expect(branchesArray[0]).to.have.property('name');
-            chai.expect(branchesArray[0]).to.have.property('location');
+            expect(branchesArray).toBeDefined();
+            expect(branchesArray[0]).toHaveProperty('_id');
+            expect(branchesArray[0]).toHaveProperty('name');
+            expect(branchesArray[0]).toHaveProperty('location');
             done();
         });
     });
-    it('Should get all branches with search term Helsinki', done => {
+    it('Should get all branches with search term Karjala', done => {
         client.getBranches('', '', 'Karjala').then(branches => {
             const branchesArray = branches['payload'];
-            chai.expect(branchesArray[0]['name']).to.include('KARJALA');
+            expect(branchesArray[0]['name']).toEqual(
+                expect.stringContaining('KARJALA')
+            );
             done();
         });
     });
     it('Should get all branches near coordinates 24.750,60.733 (Riihimäki)', done => {
         client.getBranches('', '24.750,60.733').then(branches => {
             const branchesArray = branches['payload'];
-            chai.expect(branchesArray[0]['town']).to.equal('RIIHIMÄKI');
+            expect(branchesArray[0]['town']).toEqual('RIIHIMÄKI');
             done();
         });
     });
     it('Should get all branches as json', done => {
         client.getBranchesAsJson().then(branches => {
             const branchesArray = branches['payload'];
-            chai.expect(branchesArray).to.exist;
-            chai.expect(branchesArray[0]).to.have.property('_id');
-            chai.expect(branchesArray[0]).to.have.property('name');
-            chai.expect(branchesArray[0]).to.have.property('location');
+            expect(branchesArray).toBeDefined();
+            expect(branchesArray[0]).toHaveProperty('_id');
+            expect(branchesArray[0]).toHaveProperty('name');
+            expect(branchesArray[0]).toHaveProperty('location');
             done();
         });
     });
     it('Should get all branches as geoJson', done => {
         client.getBranchesAsGeoJson().then(branches => {
-            chai.expect(branches).to.have.property('features');
-            chai.expect(branches['features']).to.be.an('array');
-            chai
-                .expect(branches['features'][0])
-                .to.have.property('geometry')
-                .with.property('coordinates');
-            chai
-                .expect(branches['features'][0])
-                .to.have.property('properties')
-                .with.property('_id');
-            chai.expect(branches['features'][0]).to.have.property('type');
+            expect(branches).toHaveProperty('features');
+            expect(Array.isArray(branches['features'])).toEqual(true);
+            expect(branches['features'][0]).toHaveProperty('geometry');
+            expect(branches['features'][0]['geometry']).toHaveProperty(
+                'coordinates'
+            );
+            expect(branches['features'][0]).toHaveProperty('properties');
+            expect(branches['features'][0]['properties']).toHaveProperty('_id');
+            expect(branches['features'][0]).toHaveProperty('type');
             done();
         });
     });

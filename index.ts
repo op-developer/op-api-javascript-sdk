@@ -18,9 +18,7 @@ export class Client {
      */
     constructor(options?: dataSchemas.Options) {
         const defaultOptions = {
-            headers: {
-                'x-api-key': ''
-            },
+            headers: {},
             baseURL: config.baseUrl,
             version: config.version,
             timeout: config.timeout,

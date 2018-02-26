@@ -1,6 +1,3 @@
-import * as chai from 'chai';
-import 'mocha';
-
 import { Client } from '../';
 
 const headers = {
@@ -14,11 +11,8 @@ const client = new Client({ headers });
 describe('Accounts', () => {
     it('Should return more than 1 account.', done => {
         client.getAllAccounts().then(accounts => {
-            chai.expect(accounts).length.to.be.above(1);
-            chai
-                .expect(accounts)
-                .to.have.nested.property('[0]')
-                .with.property('accountId');
+            expect(accounts.length).toBeGreaterThan(1);
+            expect(accounts[0]).toHaveProperty('accountId');
             done();
         });
     });
@@ -26,12 +20,12 @@ describe('Accounts', () => {
         client
             .getAccountById('4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f')
             .then(account => {
-                chai.expect(account).to.exist;
-                chai
-                    .expect(account)
-                    .to.have.nested.property('[0]')
-                    .with.property('accountId')
-                    .to.equal('4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f');
+                expect(account).toBeDefined();
+                expect(account[0]).toBeDefined();
+                expect(account[0]['accountId']).toBeDefined();
+                expect(account[0]['accountId']).toEqual(
+                    '4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f'
+                );
                 done();
             });
     });
@@ -39,11 +33,10 @@ describe('Accounts', () => {
         client
             .getAccountTransactions('5189f37b439bd02462e196e206d0318f094fca82')
             .then(transactions => {
-                chai.expect(transactions).length.to.be.above(0);
-                chai
-                    .expect(transactions)
-                    .to.have.nested.property('[0]')
-                    .with.property('transactionId');
+                expect(transactions).toBeDefined();
+                expect(transactions.length).toBeGreaterThan(0);
+                expect(transactions[0]).toBeDefined();
+                expect(transactions[0]).toHaveProperty('transactionId');
                 done();
             });
     });
@@ -54,7 +47,7 @@ describe('Accounts', () => {
                 '77302960-fb2b-11e7-a10a-b5588c376575'
             )
             .then(transaction => {
-                chai.expect(transaction).to.have.property('transaction');
+                expect(transaction).toHaveProperty('transaction');
                 done();
             });
     });
