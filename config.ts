@@ -1,6 +1,6 @@
 const API = {
     baseUrl: 'https://sandbox.apis.op-palvelut.fi',
-    timeout: 2000,
+    timeout: 10000,
     version: 'v1'
 };
 
