@@ -10,11 +10,17 @@ const client = new Client({ headers });
 
 describe('Accounts', () => {
     it('Should return more than 1 account.', done => {
-        client.getAllAccounts().then(accounts => {
-            expect(accounts.length).toBeGreaterThan(1);
-            expect(accounts[0]).toHaveProperty('accountId');
-            done();
-        });
+        client
+            .getAllAccounts()
+            .then(accounts => {
+                expect(accounts.length).toBeGreaterThan(1);
+                expect(accounts[0]).toHaveProperty('accountId');
+                done();
+            })
+            .catch(err => {
+                console.log(err);
+                done();
+            });
     });
     it('Should return account with id "4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f".', done => {
         client
@@ -27,6 +33,10 @@ describe('Accounts', () => {
                     '4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f'
                 );
                 done();
+            })
+            .catch(err => {
+                console.log(err);
+                done();
             });
     });
     it('Should return transactions from accountId "5189f37b439bd02462e196e206d0318f094fca82"', done => {
@@ -38,6 +48,10 @@ describe('Accounts', () => {
                 expect(transactions[0]).toBeDefined();
                 expect(transactions[0]).toHaveProperty('transactionId');
                 done();
+            })
+            .catch(err => {
+                console.log(err);
+                done();
             });
     });
     it('Should return transaction with id "77302960-fb2b-11e7-a10a-b5588c376575"', done => {
@@ -48,6 +62,10 @@ describe('Accounts', () => {
             )
             .then(transaction => {
                 expect(transaction).toHaveProperty('transaction');
+                done();
+            })
+            .catch(err => {
+                console.log(err);
                 done();
             });
     });

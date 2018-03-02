@@ -17,14 +17,20 @@ const accountId = '07618ad83d7c5d5f2db8908d33b6a9272c5e8d96';
 
 describe('Funds', () => {
     it('Should get all funds', done => {
-        client.getFunds().then(funds => {
-            expect(Array.isArray(funds)).toBe(true);
-            expect(funds[0]).toBeDefined();
-            expect(funds[0]).toHaveProperty('isinCode');
-            expect(funds[0]).toHaveProperty('unitPrice');
-            expect(funds[0]).toHaveProperty('nameOfFund');
-            done();
-        });
+        client
+            .getFunds()
+            .then(funds => {
+                expect(Array.isArray(funds)).toBe(true);
+                expect(funds[0]).toBeDefined();
+                expect(funds[0]).toHaveProperty('isinCode');
+                expect(funds[0]).toHaveProperty('unitPrice');
+                expect(funds[0]).toHaveProperty('nameOfFund');
+                done();
+            })
+            .catch(err => {
+                console.log(err);
+                done();
+            });
     });
     it('Should post a subscription to fund', done => {
         client
@@ -34,6 +40,10 @@ describe('Funds', () => {
                 expect(subscriptionInfo['subscription']).toHaveProperty(
                     'orderIdentifier'
                 );
+                done();
+            })
+            .catch(err => {
+                console.log(err);
                 done();
             });
     });
@@ -45,6 +55,10 @@ describe('Funds', () => {
                 expect(redemptionInfo['subscription']).toHaveProperty(
                     'redemptionIdentifier'
                 );
+                done();
+            })
+            .catch(err => {
+                console.log(err);
                 done();
             });
     });

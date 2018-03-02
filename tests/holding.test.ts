@@ -10,11 +10,17 @@ const client = new Client({ headers });
 
 describe('Holdings', () => {
     it('Should return all holdings from user', done => {
-        client.getHoldings().then(holdings => {
-            expect(holdings).toBeDefined();
-            expect(holdings).toHaveProperty('id');
-            expect(holdings).toHaveProperty('fundHoldings');
-            done();
-        });
+        client
+            .getHoldings()
+            .then(holdings => {
+                expect(holdings).toBeDefined();
+                expect(holdings).toHaveProperty('id');
+                expect(holdings).toHaveProperty('fundHoldings');
+                done();
+            })
+            .catch(err => {
+                console.log(err);
+                done();
+            });
     });
 });
