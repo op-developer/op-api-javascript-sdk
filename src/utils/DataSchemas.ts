@@ -1,3 +1,5 @@
+import { AxiosRequestConfig } from 'axios';
+
 export interface Holding {
     id: number;
     sumOfAllHoldings?: SumOfAllHoldings;
@@ -73,13 +75,9 @@ export interface PaymentConfirmData {
     receiverName?: string;
 }
 
-export interface Options {
-    headers?: Headers;
-    baseURL?: string;
-    url?: string;
+export interface Options extends AxiosRequestConfig {
     version?: string;
     json?: boolean;
-    timeout?: number;
     data?: object;
 }
 
