@@ -1,8 +1,8 @@
 import { Client } from '../';
 
 const headers = {
-    'x-request-id': 'x-request-id',
-    'x-session-id': 'x-session-id',
+    'x-request-id': 'x-request-id-for-testing',
+    'x-session-id': 'x-session-id-for-testing',
     'x-authorization': 'b6910384440ce06f495976f96a162e2ab1bafbb4',
     'x-api-key': process.env.X_API_KEY
 };
@@ -17,6 +17,14 @@ const paymentData = {
     receiverBic: 'string',
     receiverIban: 'FI1958400720090508',
     receiverName: 'string'
+};
+
+const transferData = {
+    amount: 10,
+    sourceAccountName: 'kasvutuotto',
+    targetAccountName: 'käyttötili',
+    currency: 'EUR',
+    message: 'Testing'
 };
 
 describe('Payments', () => {
@@ -57,5 +65,25 @@ describe('Payments', () => {
                 console.log(err);
                 done();
             });
+    });
+
+    it('Should create transfer between owned accounts', done => {
+        client.postTransfer(transferData).then(transfer => {
+            expect(transfer).not.toBeUndefined();
+            expect(transfer).toHaveProperty('amount', transferData.amount);
+            expect(transfer).toHaveProperty('payerIban');
+            expect(transfer).toHaveProperty(
+                'payerName',
+                transferData.sourceAccountName.toUpperCase()
+            );
+            expect(transfer).toHaveProperty('receiverIban');
+            expect(transfer).toHaveProperty(
+                'receiverName',
+                transferData.targetAccountName.toUpperCase()
+            );
+            expect(transfer).toHaveProperty('subject', transferData.message);
+            expect(transfer).toHaveProperty('currency', transferData.currency);
+            done();
+        });
     });
 });
