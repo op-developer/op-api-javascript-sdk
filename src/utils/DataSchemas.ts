@@ -75,6 +75,14 @@ export interface PaymentConfirmData {
     receiverName?: string;
 }
 
+export interface TransferData {
+    amount: number;
+    sourceAccountName: string;
+    targetAccountName: string;
+    currency?: string;
+    message?: string;
+}
+
 export interface Options extends AxiosRequestConfig {
     version?: string;
     json?: boolean;
