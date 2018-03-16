@@ -68,22 +68,34 @@ describe('Payments', () => {
     });
 
     it('Should create transfer between owned accounts', done => {
-        client.postTransfer(transferData).then(transfer => {
-            expect(transfer).not.toBeUndefined();
-            expect(transfer).toHaveProperty('amount', transferData.amount);
-            expect(transfer).toHaveProperty('payerIban');
-            expect(transfer).toHaveProperty(
-                'payerName',
-                transferData.sourceAccountName.toUpperCase()
-            );
-            expect(transfer).toHaveProperty('receiverIban');
-            expect(transfer).toHaveProperty(
-                'receiverName',
-                transferData.targetAccountName.toUpperCase()
-            );
-            expect(transfer).toHaveProperty('subject', transferData.message);
-            expect(transfer).toHaveProperty('currency', transferData.currency);
-            done();
-        });
+        client
+            .postTransfer(transferData)
+            .then(transfer => {
+                expect(transfer).not.toBeUndefined();
+                expect(transfer).toHaveProperty('amount', transferData.amount);
+                expect(transfer).toHaveProperty('payerIban');
+                expect(transfer).toHaveProperty(
+                    'payerName',
+                    transferData.sourceAccountName.toUpperCase()
+                );
+                expect(transfer).toHaveProperty('receiverIban');
+                expect(transfer).toHaveProperty(
+                    'receiverName',
+                    transferData.targetAccountName.toUpperCase()
+                );
+                expect(transfer).toHaveProperty(
+                    'subject',
+                    transferData.message
+                );
+                expect(transfer).toHaveProperty(
+                    'currency',
+                    transferData.currency
+                );
+                done();
+            })
+            .catch(err => {
+                console.log(err);
+                done();
+            });
     });
 });
