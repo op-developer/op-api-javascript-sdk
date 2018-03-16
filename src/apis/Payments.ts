@@ -1,6 +1,11 @@
-import request from "../utils/request";
+import request from '../utils/request';
 
-import { PaymentData, PaymentConfirmData, Options } from '../utils/DataSchemas';
+import {
+    PaymentData,
+    PaymentConfirmData,
+    Options,
+    TransferData
+} from '../utils/DataSchemas';
 
 export default class Payments {
     options: Options;
@@ -12,13 +17,32 @@ export default class Payments {
             ...this.options,
             data: body
         };
-        return request('POST', `/${this.options.version}/payments/initiate`, requestOptions);
+        return request(
+            'POST',
+            `/${this.options.version}/payments/initiate`,
+            requestOptions
+        );
     }
     async confirm(body: PaymentConfirmData) {
         const requestOptions: Options = {
             ...this.options,
             data: body
         };
-        return request('POST', `/${this.options.version}/payments/confirm`, requestOptions);
+        return request(
+            'POST',
+            `/${this.options.version}/payments/confirm`,
+            requestOptions
+        );
+    }
+    async transfer(body: TransferData) {
+        const requestOptions: Options = {
+            ...this.options,
+            data: body
+        };
+        return request(
+            'POST',
+            `/${this.options.version}/payments/transfer`,
+            requestOptions
+        );
     }
 }

@@ -123,9 +123,10 @@ export class Client {
     }
 
     /**
-     * Initiate payment with payment information. Returns payment with confirmation id.
+     * Initiate payment with payment information
      * @param body Body of payment
      * @param options Optional. Set options for HTTP requests
+     * @returns Payment with confirmation id.
      */
     postPaymentInitiate(
         body: dataSchemas.PaymentData,
@@ -137,8 +138,8 @@ export class Client {
 
     /**
      * Confirms initiated payment.
-     * @param body Body of payment
-     * @param options Optional. Set options for HTTP requests
+     * @param {body} body Body of payment
+     * @param {options} options Optional. Set options for HTTP requests
      */
     postPaymentConfirm(
         body: dataSchemas.PaymentConfirmData,
@@ -146,6 +147,20 @@ export class Client {
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Payments(requestOptions).confirm(body);
+    }
+
+    /**
+     * Create transfer between owned accounts
+     * @param body Body of transfer
+     * @param options Optional. Set options for HTTP requests
+     * @returns Response body of transfer
+     */
+    postTransfer(
+        body: dataSchemas.TransferData,
+        options?: dataSchemas.Options
+    ) {
+        let requestOptions = objectAssignDeep({}, this.options, options);
+        return new Payments(requestOptions).transfer(body);
     }
 
     /**
