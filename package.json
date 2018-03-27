@@ -1,54 +1,58 @@
 {
-    "name": "@op/api-sdk",
-    "version": "1.1.0",
-    "description": "Simple SDK for accessing OP APIs",
-    "homepage": "https://github.com/op-developer/op-api-javascript-sdk",
-    "keywords": [
-        "OP API",
-        "OP-Developer",
-        "OPEN OP",
-        "OP SDK"
+  "name": "@op/api-sdk",
+  "version": "1.1.0",
+  "description": "Simple SDK for accessing OP APIs",
+  "homepage": "https://github.com/op-developer/op-api-javascript-sdk",
+  "keywords": [
+    "OP API",
+    "OP-Developer",
+    "OPEN OP",
+    "OP SDK"
+  ],
+  "bugs": {
+    "url": "https://github.com/op-developer/op-api-javascript-sdk/issues"
+  },
+  "main": "./build/index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "prepare": "npm run -s build",
+    "test": "npm run -s build && jest",
+    "precommit": "npm t"
+  },
+  "author": {
+    "name": "OP-Developer",
+    "url": "https://op-developer.fi"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/op-developer/op-api-javascript-sdk.git"
+  },
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^0.17.1",
+    "object-assign-deep": "^0.3.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.3",
+    "husky": "^0.14.3",
+    "jest": "^22.1.2",
+    "prettier": "^1.11.1",
+    "pretty-quick": "^1.4.1",
+    "typescript": "^2.6.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
     ],
-    "bugs": {
-        "url": "https://github.com/op-developer/op-api-javascript-sdk/issues"
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.(ts|tsx)$": "./preprocessor.js"
     },
-    "main": "./build/index.js",
-    "scripts": {
-        "build": "tsc -p .",
-        "prepare": "npm run -s build",
-        "test": "npm run -s build && jest"
-    },
-    "author": {
-        "name": "OP-Developer",
-        "url": "https://op-developer.fi"
-    },
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/op-developer/op-api-javascript-sdk.git"
-    },
-    "dependencies": {
-        "@types/axios": "^0.14.0",
-        "axios": "^0.17.1",
-        "object-assign-deep": "^0.3.1"
-    },
-    "devDependencies": {
-        "@types/jest": "^22.1.3",
-        "jest": "^22.1.2",
-        "typescript": "^2.6.2"
-    },
-    "jest": {
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ],
-        "testEnvironment": "node",
-        "transform": {
-            "^.+\\.(ts|tsx)$": "./preprocessor.js"
-        },
-        "testMatch": [
-            "**/tests/*.(ts|tsx|js)"
-        ]
-    }
+    "testMatch": [
+      "**/tests/*.(ts|tsx|js)"
+    ]
+  }
 }
