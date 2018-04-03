@@ -24,7 +24,7 @@
 
 See [requests](https://op-developer.fi/docs/#user-content-requests) for required headers.
 
-You can set request options for client instance, and also for each request function call, which is useful because you can then use global instance of SDK client, with globally defined x-api-key, but still give x-authorization key per user of your app:
+You can set request options for client instance, and also for each request function call, which is useful because you can then use global instance of SDK client, with globally defined x-api-key, but still give separate x-authorization header for each user:
 
     const userOptions = {
         headers: {
