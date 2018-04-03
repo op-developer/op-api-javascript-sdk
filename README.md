@@ -12,38 +12,27 @@
 
 ## Usage
 
-You need to use headers on every request. See [requests](https://op-developer.fi/docs/#user-content-requests)
-
-    const SDK = require('@op/api-sdk')
+    import SDK from "@op/api-sdk";
 
     const options = {
         headers: {
-            'x-request-id': 'your-request-id',
-            'x-session-id': 'your-session-id',
             'x-api-key': 'your-api-key',
-            'x-authorization': 'your-authorization-token'
         }
     }
 
-You can set request options to client instance.
-
     const client = new SDK.Client(options)
 
-    client.getAllAccounts().then(accounts => {
-            console.log(accounts);
-        }).catch(error => {
-            console.log(error);
-        })
+See [requests](https://op-developer.fi/docs/#user-content-requests) for required headers.
 
-You can also set request options to each function individually
+You can set request options for client instance, and also for each request function call, which is useful because you can then use global instance of SDK client, with globally defined x-api-key, but still give x-authorization key per user of your app:
 
-    const client = new SDK.Client()
-
-    client.getAllAccounts(options).then(accounts => {
-            console.log(accounts)
-        }).catch(error => {
-            console.log(error);
+    const userOptions = {
+        headers: {
+            'x-authorization': userSession.getAuthorizationKey({bank: "OP"})
         }
+    }
+
+    const accounts = await client.getAllAccounts(userOptions);
 
 For further reading, please see our API [documentation](https://op-developer.fi/docs/)
 
