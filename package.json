@@ -1,6 +1,6 @@
 {
     "name": "@op/api-sdk",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Simple SDK for accessing OP APIs",
     "homepage": "https://github.com/op-developer/op-api-javascript-sdk",
     "keywords": ["OP API", "OP-Developer", "OPEN OP", "OP SDK"],
