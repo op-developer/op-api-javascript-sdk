@@ -1,5 +1,5 @@
 import { Options } from '../utils/DataSchemas';
-import request from "../utils/request";
+import request from '../utils/request';
 
 export default class Mobility {
     options: Options;
@@ -12,7 +12,11 @@ export default class Mobility {
         query: string = ''
     ) {
         const queryString = makeQueryString([bbox, location, query]);
-        return request('GET', `/mobility/${this.options.version}/branches${queryString}`, this.options);
+        return request(
+            'GET',
+            `/branches/${this.options.version}/branches${queryString}`,
+            this.options
+        );
     }
     async getBranchesAsJson(
         bbox: string = '',
@@ -20,7 +24,11 @@ export default class Mobility {
         query: string = ''
     ) {
         const queryString = makeQueryString([bbox, location, query]);
-        return request('GET', `/mobility/${this.options.version}/branches.json${queryString}`, this.options);
+        return request(
+            'GET',
+            `/branches/${this.options.version}/branches.json${queryString}`,
+            this.options
+        );
     }
     async getBranchesAsGeoJson(
         bbox: string = '',
@@ -28,7 +36,11 @@ export default class Mobility {
         query: string = ''
     ) {
         const queryString = makeQueryString([bbox, location, query]);
-        return request('GET', `/mobility/${this.options.version}/branches.geojson${queryString}`, this.options);
+        return request(
+            'GET',
+            `/branches/${this.options.version}/branches.geojson${queryString}`,
+            this.options
+        );
     }
 }
 
