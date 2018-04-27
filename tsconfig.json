@@ -1,16 +1,12 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "watch": false,
-    "lib": [
-      "ES2015"
-    ],
-    "outDir": "./build",
-    "noEmitOnError": true,
-    "strict": true
-  },
-  "exclude": [
-    "tests/**"
-  ]
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "watch": false,
+        "lib": ["es2015"],
+        "outDir": "./build",
+        "noEmitOnError": true,
+        "strict": true
+    },
+    "exclude": ["tests/**"]
 }
