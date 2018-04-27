@@ -1,8 +1,6 @@
 import { Client } from '../';
 
 const headers = {
-    'x-request-id': 'x-request-id-for-testing',
-    'x-session-id': 'x-session-id-for-testing',
     'x-authorization': 'b6910384440ce06f495976f96a162e2ab1bafbb4',
     'x-api-key': process.env.X_API_KEY
 };
@@ -15,7 +13,7 @@ const paymentData = {
     payerIban: 'FI7858400761900714',
     valueDate: '2017-11-14T22:59:34Z',
     receiverBic: 'string',
-    receiverIban: 'FI1958400720090508',
+    receiverIban: 'FI1959986920206075',
     receiverName: 'string'
 };
 
@@ -44,6 +42,7 @@ describe('Payments', () => {
         client
             .postPaymentInitiate(paymentData)
             .then(paymentInfo => {
+                console.log('Payment initialize data: ', paymentInfo);
                 expect(paymentInfo).toHaveProperty('paymentId');
                 expect(paymentInfo).toHaveProperty('amount');
                 expect(paymentInfo).toHaveProperty('payerIban');
@@ -54,48 +53,34 @@ describe('Payments', () => {
                 client
                     .postPaymentConfirm({ paymentId: paymentId })
                     .then(confirmInfo => {
+                        console.log('Confirm payment data: ', confirmInfo);
                         expect(confirmInfo).toHaveProperty('paymentId');
                         expect(confirmInfo).toHaveProperty('amount');
                         expect(confirmInfo).toHaveProperty('payerIban');
                         expect(confirmInfo).toHaveProperty('receiverIban');
                         done();
                     });
-            })
-            .catch(err => {
-                console.log(err);
-                done();
             });
     });
 
     it('Should create transfer between owned accounts', done => {
-        client
-            .postTransfer(transferData)
-            .then(transfer => {
-                expect(transfer).not.toBeUndefined();
-                expect(transfer).toHaveProperty('amount', transferData.amount);
-                expect(transfer).toHaveProperty('payerIban');
-                expect(transfer).toHaveProperty(
-                    'payerName',
-                    transferData.sourceAccountName.toUpperCase()
-                );
-                expect(transfer).toHaveProperty('receiverIban');
-                expect(transfer).toHaveProperty(
-                    'receiverName',
-                    transferData.targetAccountName.toUpperCase()
-                );
-                expect(transfer).toHaveProperty(
-                    'subject',
-                    transferData.message
-                );
-                expect(transfer).toHaveProperty(
-                    'currency',
-                    transferData.currency
-                );
-                done();
-            })
-            .catch(err => {
-                console.log(err);
-                done();
-            });
+        client.postTransfer(transferData).then(transfer => {
+            console.log('Transfer data: ', transferData);
+            expect(transfer).not.toBeUndefined();
+            expect(transfer).toHaveProperty('amount', transferData.amount);
+            expect(transfer).toHaveProperty('payerIban');
+            expect(transfer).toHaveProperty(
+                'payerName',
+                transferData.sourceAccountName.toUpperCase()
+            );
+            expect(transfer).toHaveProperty('receiverIban');
+            expect(transfer).toHaveProperty(
+                'receiverName',
+                transferData.targetAccountName.toUpperCase()
+            );
+            expect(transfer).toHaveProperty('subject', transferData.message);
+            expect(transfer).toHaveProperty('currency', transferData.currency);
+            done();
+        });
     });
 });

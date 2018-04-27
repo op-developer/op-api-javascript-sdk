@@ -1,8 +1,6 @@
 import { Client } from '../';
 
 const headers = {
-    'x-request-id': 'x-request-id',
-    'x-session-id': 'x-session-id',
     'x-authorization': 'b6910384440ce06f495976f96a162e2ab1bafbb4',
     'x-api-key': process.env.X_API_KEY
 };
@@ -10,22 +8,20 @@ const client = new Client({ headers });
 
 describe('Accounts', () => {
     it('Should return more than 1 account.', done => {
-        client
-            .getAllAccounts()
-            .then(accounts => {
-                expect(accounts.length).toBeGreaterThan(1);
-                expect(accounts[0]).toHaveProperty('accountId');
-                done();
-            })
-            .catch(err => {
-                console.log(err);
-                done();
-            });
+        client.getAllAccounts().then(accounts => {
+            expect(accounts.length).toBeGreaterThan(1);
+            expect(accounts[0]).toHaveProperty('accountId');
+            expect(accounts[0]).toHaveProperty('iban');
+            expect(accounts[0]).toHaveProperty('accountName');
+            expect(accounts[0]).toHaveProperty('balance');
+            done();
+        });
     });
     it('Should return account with id "4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f".', done => {
         client
             .getAccountById('4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f')
             .then(account => {
+                console.log(account);
                 expect(account).toBeDefined();
                 expect(account[0]).toBeDefined();
                 expect(account[0]['accountId']).toBeDefined();
@@ -33,40 +29,39 @@ describe('Accounts', () => {
                     '4270acb4db4a8b82c954ff93e5c81f2f38fd5a2f'
                 );
                 done();
-            })
-            .catch(err => {
-                console.log(err);
-                done();
             });
     });
-    it('Should return transactions from accountId "5189f37b439bd02462e196e206d0318f094fca82"', done => {
-        client
-            .getAccountTransactions('5189f37b439bd02462e196e206d0318f094fca82')
-            .then(transactions => {
-                expect(transactions).toBeDefined();
-                expect(transactions.length).toBeGreaterThan(0);
-                expect(transactions[0]).toBeDefined();
-                expect(transactions[0]).toHaveProperty('transactionId');
-                done();
-            })
-            .catch(err => {
-                console.log(err);
-                done();
-            });
-    });
-    it('Should return transaction with id "77302960-fb2b-11e7-a10a-b5588c376575"', done => {
-        client
-            .getAccountsTransactionById(
-                '5189f37b439bd02462e196e206d0318f094fca82',
-                '77302960-fb2b-11e7-a10a-b5588c376575'
-            )
-            .then(transaction => {
-                expect(transaction).toHaveProperty('transaction');
-                done();
-            })
-            .catch(err => {
-                console.log(err);
-                done();
-            });
+    it('Should return transactions from accountId "adee9e7d34d8ffb3a3ef96dda5be37a63673b23c"', async () => {
+        const transactions = await client.getAccountTransactions(
+            'adee9e7d34d8ffb3a3ef96dda5be37a63673b23c'
+        );
+        console.log(
+            'Transactions from account with id adee9e7d34d8ffb3a3ef96dda5be37a63673b23c: ',
+            transactions
+        );
+        expect(transactions[0]).toBeDefined();
+        expect(transactions[0]).toHaveProperty('transactionId');
+        const transactionId = transactions[0].transactionId;
+        const transaction = await client.getAccountsTransactionById(
+            'adee9e7d34d8ffb3a3ef96dda5be37a63673b23c',
+            transactionId
+        );
+        console.log(
+            `Transaction with transactionId ${
+                transaction.transaction[0].transactionId
+            }`,
+            transaction
+        );
+        expect(transaction).toHaveProperty('transaction');
+        expect(Array.isArray(transaction.transaction)).toBe(true);
+        const receivedTransaction = transaction.transaction[0];
+        expect(receivedTransaction).toHaveProperty(
+            'transactionId',
+            receivedTransaction.transactionId
+        );
+        expect(receivedTransaction).toHaveProperty(
+            'accountId',
+            'adee9e7d34d8ffb3a3ef96dda5be37a63673b23c'
+        );
     });
 });
