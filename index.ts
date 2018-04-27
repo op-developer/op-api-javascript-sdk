@@ -51,9 +51,16 @@ export class Client {
      * @param accountId Account id
      * @param options Optional. Set options for HTTP requests
      */
-    getAccountTransactions(accountId: String, options?: dataSchemas.Options) {
+    getAccountTransactions(
+        accountId: String,
+        enriched?: boolean,
+        options?: dataSchemas.Options
+    ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
-        return new Accounts(requestOptions).getTransactions(accountId);
+        return new Accounts(requestOptions).getTransactions(
+            accountId,
+            enriched
+        );
     }
 
     /**
@@ -65,12 +72,14 @@ export class Client {
     getAccountsTransactionById(
         accountId: String,
         transactionId: String,
+        enriched?: boolean,
         options?: dataSchemas.Options
     ) {
         let requestOptions = objectAssignDeep({}, this.options, options);
         return new Accounts(requestOptions).getTransactionsById(
             accountId,
-            transactionId
+            transactionId,
+            enriched
         );
     }
 

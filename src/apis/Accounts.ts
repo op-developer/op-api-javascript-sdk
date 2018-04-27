@@ -7,15 +7,47 @@ export default class Accounts {
         this.options = options;
     }
     async getAll() {
-        return request('GET', `/${this.options.version}/accounts`, this.options);
+        return request(
+            'GET',
+            `/${this.options.version}/accounts`,
+            this.options
+        );
     }
     async getById(accountId: String) {
-        return request('GET', `/${this.options.version}/accounts/${accountId}`, this.options);
+        return request(
+            'GET',
+            `/${this.options.version}/accounts/${accountId}`,
+            this.options
+        );
     }
-    async getTransactions(accountId: String) {
-        return request('GET', `/${this.options.version}/accounts/${accountId}/transactions`, this.options);
+    async getTransactions(accountId: String, enriched?: boolean) {
+        let enrich = '';
+        if (enriched) {
+            enrich = '?include=enriched';
+        }
+        return request(
+            'GET',
+            `/${
+                this.options.version
+            }/accounts/${accountId}/transactions${enrich}`,
+            this.options
+        );
     }
-    async getTransactionsById(accountId: String, transactionId: String) {
-        return request('GET', `/${this.options.version}/accounts/${accountId}/transactions/${transactionId}`, this.options);
+    async getTransactionsById(
+        accountId: String,
+        transactionId: String,
+        enriched?: boolean
+    ) {
+        let enrich = '';
+        if (enriched) {
+            enrich = '?include=enriched';
+        }
+        return request(
+            'GET',
+            `/${
+                this.options.version
+            }/accounts/${accountId}/transactions/${transactionId}${enrich}`,
+            this.options
+        );
     }
 }
