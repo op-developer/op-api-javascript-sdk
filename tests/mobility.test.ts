@@ -8,19 +8,13 @@ const client = new Client({ headers });
 
 describe('Mobility', () => {
     it('Should get all branches', done => {
-        client
-            .getBranches()
-            .then(branches => {
-                const branchesArray = branches['payload'];
-                expect(branchesArray).toBeDefined();
-                expect(branchesArray[0]).toHaveProperty('name');
-                expect(branchesArray[0]).toHaveProperty('location');
-                done();
-            })
-            .catch(err => {
-                console.log(err);
-                done();
-            });
+        client.getBranches().then(branches => {
+            const branchesArray = branches['payload'];
+            expect(branchesArray).toBeDefined();
+            expect(branchesArray[0]).toHaveProperty('name');
+            expect(branchesArray[0]).toHaveProperty('location');
+            done();
+        });
     });
     it('Should get all branches with search term Karjala', done => {
         client.getBranches('', '', 'Karjala').then(branches => {
