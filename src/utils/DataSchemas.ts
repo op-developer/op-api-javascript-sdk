@@ -87,6 +87,7 @@ export interface Options extends AxiosRequestConfig {
     version?: string;
     json?: boolean;
     data?: object;
+    headers?: Headers;
 }
 
 export interface Headers {
