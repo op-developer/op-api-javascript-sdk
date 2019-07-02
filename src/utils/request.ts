@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, Method } from 'axios';
 import { Options } from './DataSchemas';
 import noResponseError from './error';
 
@@ -7,7 +7,7 @@ const request = async (method: string, path: string, options: Options) => {
         headers: options.headers,
         baseURL: options.baseURL,
         timeout: options.timeout,
-        method: method,
+        method: method as Method,
         url: path,
         data: options.data
     };
