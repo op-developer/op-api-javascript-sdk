@@ -1,3 +1,5 @@
+# DEPRECATED
+
 # op-api-javascript-sdk
 
 [![Build Status](https://travis-ci.org/op-developer/op-api-javascript-sdk.svg?branch=master)](https://travis-ci.org/op-developer/op-api-javascript-sdk)
